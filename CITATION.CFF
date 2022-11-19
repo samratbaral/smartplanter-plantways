@@ -1,0 +1,23 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Baral"
+    given-names: "Samrat"
+    orcid:
+  - family-names: "Jaen"
+    given-names: "Luis Guillermo"
+    orcid:
+  - family-names: "Ruiz"
+    given-names: "Samuel J"
+    orcid:
+  - family-names: "Dui"
+    given-names: "Don"
+    orcid:
+  - family-names: "Flores"
+    given-names: "Kevin Eduardo"
+    orcid:
+title: "Smart Planter: PlantWays "
+version: 1.0.0
+doi:
+date-released: 2022-11-19
+url: "https://github.com/samratbaral/smartplanter-mongodb"
