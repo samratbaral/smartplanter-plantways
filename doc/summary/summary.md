@@ -9,12 +9,13 @@ Code is organized under the following major files and directories:
 ├── docs: Documentation.
 |    └── documents: documentation for us.
 |           ├── overleaf.md: documentation for Overleaf
-|           └── pdf
+|           └── pdfs
 |    └── summary: summary for application
 |       └── summary.md: Understand the file structure.
 |
 ├── src: Source Code goes here
-|    └── plantsways_app: Flutter Application Source Code
+|    ├── plantsways_iot: IoT Source Code.
+|    └── plantsways_app: Flutter Application Source Code.
 |
 ├── CITATION: Developer Site
 |
