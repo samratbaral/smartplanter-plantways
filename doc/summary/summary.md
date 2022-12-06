@@ -9,7 +9,10 @@ Code is organized under the following major files and directories:
 ├── docs: Documentation.
 |    └── documents: documentation for us.
 |           ├── overleaf.md: documentation for Overleaf
-|           └── pdfs
+|           └── pdfs : Recent PDF format for all Overleaf.
+|               ├── ADS.pdf: Architecture Design Specification documentation.
+|               ├── PC.pdf: Project Charter documentation.
+|               └── SRS.pdf: System Requirement Specification documentation.
 |    └── summary: summary for application
 |       └── summary.md: Understand the file structure.
 |
