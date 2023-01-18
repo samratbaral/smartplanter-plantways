@@ -6,7 +6,7 @@ Code is organized under the following major files and directories:
 
 ```text
 
-├── docs: Documentation..
+├── docs: Documentation.
 |    └── documents: documentation for us.
 |           ├── overleaf.md: documentation for Overleaf
 |           └── pdfs : Recent PDF format for all Overleaf.
