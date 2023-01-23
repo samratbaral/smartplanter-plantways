@@ -1,8 +1,8 @@
 ### [< Back](/README.md) to README File
 
-# Code Organization
+# Code Organization and File Structure
 
-Code is organized under the following major files and directories:
+Code is organized under the following major files and directories: 
 
 ```text
 

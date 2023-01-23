@@ -17,7 +17,7 @@ Please see the [Documents](/doc/documents/overleaf.md) of project for documentat
 
 ## Team
 
-Our Team followed this [Contribute Guide](/CONTRIBUTE) for more information. If you have any questions, please contact by clicking the email.
+Our Team followed this [Contribute Guide](/CONTRIBUTE) for development information. If you have any questions, please contact by clicking the email.
 
 **Samrat Baral:**[`samrat.baral[at] mavs [dot] uta [dot] edu`](mailto:samrat.baral@mavs.uta.edu)
 
