@@ -1,6 +1,6 @@
 # Smart Planter: PlantWays
 
-Its an IOT(Internet of Things) project using  Flutter development environment.
+Its an IOT(Internet of Things) project using Flutter development environment.
 
 ## Getting Started
 
