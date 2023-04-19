@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 //import 'package:flutter_todo/main.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:provider/provider.dart';
 import 'package:realm/realm.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 
 class Bluetooth extends StatefulWidget {
   const Bluetooth({
@@ -18,7 +18,7 @@ class Bluetooth extends StatefulWidget {
 
 class _BluetoothState extends State<Bluetooth> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  FlutterBlue flutterBlue = FlutterBlue.instance;
   List<BluetoothDevice> devicesList = [];
   bool devicesDiscovered = false;
   //bool permGranted = false;
@@ -151,35 +151,35 @@ class _BluetoothState extends State<Bluetooth> {
             Text('1) Start Bluetooth scan and connect to your device'),
             devicesDiscovered
                 ? Container(
-              height: 300,
-              width: 600,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 5, color: Colors.black)),
-              child: ListView.builder(
-                  itemCount: devicesList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    BluetoothDevice device = devicesList[index];
-                    return ListTile(
-                      title: Text(device.name),
-                      subtitle: Text(device.id.toString()),
-                      selected: index == selectedTile,
-                      selectedTileColor: Colors.lightBlue,
-                      onTap: () async {
-                        setState(() {
-                          selectedTile = index;
-                          connectedDevice = device;
-                          print(connectedDevice);
-                        });
-                        isConnected = await connect(device);
-                        showMessage(isConnected);
-                      },
-                    );
-                  }),
-            )
+                    height: 300,
+                    width: 600,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 5, color: Colors.black)),
+                    child: ListView.builder(
+                        itemCount: devicesList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          BluetoothDevice device = devicesList[index];
+                          return ListTile(
+                            title: Text(device.name),
+                            subtitle: Text(device.id.toString()),
+                            selected: index == selectedTile,
+                            selectedTileColor: Colors.lightBlue,
+                            onTap: () async {
+                              setState(() {
+                                selectedTile = index;
+                                connectedDevice = device;
+                                print(connectedDevice);
+                              });
+                              isConnected = await connect(device);
+                              showMessage(isConnected);
+                            },
+                          );
+                        }),
+                  )
                 : FloatingActionButton(
-              onPressed: startScan,
-              child: Text('Start Scan'),
-            ),
+                    onPressed: startScan,
+                    child: Text('Start Scan'),
+                  ),
             const Text('2) Enter Wi-Fi SSID and password'),
             SizedBox(
               height: 25,
@@ -234,8 +234,8 @@ class _BluetoothState extends State<Bluetooth> {
       myController3.clear();
     });
     write(ssid, password);
-    realmServices.createUser(connectedDevice.name, connectedDevice.id.toString(),
-        50, 70, "55%", "full_sunlight", "low", "priority_high");
+    realmServices.createUser(55, "priority high", "full Sunglight",
+        connectedDevice.id.toString(), connectedDevice.name, "55%", 70, "low");
     Navigator.pop(context);
   }
 }

@@ -1,24 +1,35 @@
-import 'package:permission_handler/permission_handler.dart';
 import 'package:realm/realm.dart';
 part 'schemas.g.dart';
 
+// NOTE: These Realm models are private and therefore should be copied into the same .dart file.
 
 @RealmModel()
-class _PlantUserData{
+class _PlantUserData {
   @PrimaryKey()
   @MapTo('_id')
   late ObjectId id;
-  bool isComplete = false;
-  late String? username;
-  late String? pot_plantname;
-  late String? pot_mac_adrress;
-  late int? humidity = 0;
-  late int? temperature = 0;
-  late String? soilMoisture = '0';
-  late String? lightIntensity = '0';
-  late String? waterTankLevel = '0';
-  late String? levelSensor = '0';
 
+  int? humidity;
+
+  late bool isComplete;
+
+  String? levelSensor;
+
+  String? lightIntensity;
+
+  @MapTo('pot_mac_adrress')
+  String? potMacAdrress;
+
+  @MapTo('pot_plantname')
+  String? potPlantname;
+
+  String? soilMoisture;
+
+  int? temperature;
+
+  String? username;
+
+  String? waterTankLevel;
 }
 
 

@@ -13,18 +13,18 @@
             "type": "dart"
         },
         {
-            "name": "plantsways_app (profile mode)",
-            "cwd": "src/Plantways-Application_client_20230317025249",
+            "name": "plantsways_iot (profile mode)",
+            "cwd": "src/plantways_iot",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
-        {
-            "name": "plantsways_app (release mode)",
-            "cwd": "src/Plantways-Application_client_20230317025249",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
+        // {
+        //     "name": "plantsways_app (release mode)",
+        //     "cwd": "src/Plantways-Application_client_20230317025249",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "release"
+        // }
     ]
 }
