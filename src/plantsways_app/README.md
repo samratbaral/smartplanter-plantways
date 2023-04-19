@@ -13,6 +13,8 @@
 
 - **Visual Studio Code**. This VS Code  Version 1.73.1  was used to developed and tested application. Follow the directions at [this link](https://code.visualstudio.com/) to install VS Code .
 
+- **IntelliJ IDEA 2023.1 (Community Edition)**. This VS Code  Version 17.0.6 was used to developed and tested application. Follow the directions at [this link](https://www.jetbrains.com/idea/whatsnew/) to install IntelliJ IDEA 2023.1 (Community Edition) .
+
 
 ### Installation
 
@@ -23,7 +25,12 @@
    cd  smartplanter-mongodb
    ```
 
-2. **(Disclamier: Approval Needed)** 
+2. **(Disclamier: Approval Needed)**
+
+
+
+
+
 
 
 ### Getting Help
