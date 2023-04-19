@@ -4,23 +4,24 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+
+
         {
             "name": "plantsways_app",
-            "cwd": "src/plantsways_app",
+            "cwd": "src/Plantways-Application_client_20230317025249",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "plantsways_app (profile mode)",
-            "cwd": "src/plantsways_app",
+            "cwd": "src/Plantways-Application_client_20230317025249",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "plantsways_app (release mode)",
-            "cwd": "src/plantsways_app",
+            "cwd": "src/Plantways-Application_client_20230317025249",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

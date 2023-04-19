@@ -16,7 +16,8 @@ class RealmServices with ChangeNotifier {
   RealmServices(this.app) {
     if (app.currentUser != null || currentUser != app.currentUser) {
       currentUser ??= app.currentUser;
-      realm = Realm(Configuration.flexibleSync(currentUser!, [PlantUserData.schema ]));
+      realm = Realm(
+          Configuration.flexibleSync(currentUser!, [PlantUserData.schema]));
       // showAll = (realm.subscriptions.findByName(queryAllName) != null);
       // if (realm.subscriptions.isEmpty) {
       //   updateSubscriptions();
@@ -27,13 +28,7 @@ class RealmServices with ChangeNotifier {
   Future<void> updateSubscriptions() async {
     realm.subscriptions.update((mutableSubscriptions) {
       mutableSubscriptions.clear();
-      if (showAll) {
-        mutableSubscriptions.add(realm.all<PlantUserData>(), name: queryAllName);
-      } else {
-        mutableSubscriptions.add(
-            realm.query<PlantUserData>(r'owner_id == $0', [currentUser?.id]),
-            name: queryMyItemsName);
-      }
+      mutableSubscriptions.add(realm.all<PlantUserData>(), name: queryAllName);
     });
     await realm.subscriptions.waitForSynchronization();
   }
@@ -116,8 +111,6 @@ class RealmServices with ChangeNotifier {
   //   notifyListeners();
   // }
 
-
-
   void deleteItem(PlantUserData plantUser) {
     realm.write(() => realm.delete(plantUser));
     notifyListeners();
@@ -125,8 +118,7 @@ class RealmServices with ChangeNotifier {
 
   Future<void> updateItem(PlantUserData item,
       {String? summary, bool? isComplete}) async {
-    realm.write(() {
-    });
+    realm.write(() {});
     notifyListeners();
   }
 
