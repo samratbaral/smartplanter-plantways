@@ -35,7 +35,7 @@ with your App Services App ID. For help finding this ID, refer to:
 
 1. Clone and enter the project
 2. `flutter pub get`
-3. `flutter pub run realm generate` or if you change realm schema constantly then 'flutter pub run realm generate --watch'
+3. `flutter pub run realm generate` or if you change realm schema constantly then `flutter pub run realm generate --watch`
 4. Run the app:
    - on Windows, Linux and macOS `flutter run`
    - on Android emulator or iOS Simulator
