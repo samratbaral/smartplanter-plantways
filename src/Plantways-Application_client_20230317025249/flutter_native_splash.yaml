@@ -1,0 +1,14 @@
+## flutter_native_splash.yaml
+#
+#flutter_native_splash:
+#  image: assets/logo/plantways_logo.png
+#  color: "#42a5f5"
+#  android_12:
+#    image: assets/logo/plantways_logo.png
+#    icon_background_color: "#42a5f5"
+#    image_dark: assets/logo/plantways_logo.png
+#    icon_background_color_dark: "#121212"
+#  fill: true
+#  android: true
+#  ios: true
+#  fit: contain

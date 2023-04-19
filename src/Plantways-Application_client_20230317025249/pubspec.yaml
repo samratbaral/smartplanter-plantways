@@ -1,0 +1,51 @@
+name: flutter_todo
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0
+  cupertino_icons: ^1.0.2
+  realm: 1.0.0
+  path_provider: ^2.0.10
+  rive: ^0.9.1
+  flutter_svg: ^2.0.0-nullsafety.4
+  flutter_dotenv: ^5.0.2
+  flutter_blue_plus: ^1.4.0
+  permission_handler: ^10.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/config/
+    - assets/backgrounds/
+    - assets/icons/
+    - assets/RiveAssets/
+    - assets/sensors/
+    - assets/logo/
+    - .env
+
+  fonts:
+    - family: Intel
+      fonts:
+        - asset: assets/Fonts/Inter-Regular.ttf
+        - asset: assets/Fonts/Inter-SemiBold.ttf
+          weight: 600
+    - family: Poppins
+      fonts:
+        - asset: assets/Fonts/Poppins-Bold.ttf
+          weight: 700
