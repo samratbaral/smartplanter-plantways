@@ -5,15 +5,8 @@
     "version": "0.2.0",
     "configurations": [
 
-
         {
-            "name": "plantsways_app",
-            "cwd": "src/Plantways-Application_client_20230317025249",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "plantsways_app (profile mode)",
+            "name": "plantsways_app (Flutter APP)",
             "cwd": "src/Plantways-Application_client_20230317025249",
             "request": "launch",
             "type": "dart",
@@ -21,10 +14,8 @@
         },
         {
             "name": "plantsways_app (release mode)",
-            "cwd": "src/Plantways-Application_client_20230317025249",
+            "cwd": "src/plantways_iot",
             "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
         }
     ]
 }
