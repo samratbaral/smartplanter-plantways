@@ -25,6 +25,8 @@ class _BluetoothState extends State<Bluetooth> {
   int selectedTile = -1;
   late BluetoothCharacteristic characteristicToWrite;
   late BluetoothDevice connectedDevice;
+  late String macAddress;
+  late String deviceName;
   late StreamSubscription<List<ScanResult>> scanSubscription;
   late TextEditingController myController;
   late TextEditingController myController3;
@@ -134,6 +136,7 @@ class _BluetoothState extends State<Bluetooth> {
   @override
   Widget build(BuildContext context) {
     final realmServices = Provider.of<RealmServices>(context, listen: false);
+    //final user = realmServices.currentUser;
     bool isConnected;
     return Scaffold(
         appBar: AppBar(
@@ -168,8 +171,11 @@ class _BluetoothState extends State<Bluetooth> {
                               setState(() {
                                 selectedTile = index;
                                 connectedDevice = device;
+                                macAddress = connectedDevice.id.toString();
+                                deviceName = device.name;
                                 print(connectedDevice);
                               });
+                              print("Mac Address and device name: $macAddress, $deviceName");
                               isConnected = await connect(device);
                               showMessage(isConnected);
                             },
@@ -235,7 +241,7 @@ class _BluetoothState extends State<Bluetooth> {
     });
     write(ssid, password);
     realmServices.createUser(55, "priority high", "full Sunglight",
-        connectedDevice.id.toString(), connectedDevice.name, "55%", 70, "low");
+        macAddress, deviceName, "55%", 70, "low");
     Navigator.pop(context);
   }
 }
