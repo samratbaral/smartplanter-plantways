@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 //import 'package:flutter_todo/main.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:provider/provider.dart';
 import 'package:realm/realm.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 
 class Bluetooth extends StatefulWidget {
   const Bluetooth({
@@ -18,7 +18,7 @@ class Bluetooth extends StatefulWidget {
 
 class _BluetoothState extends State<Bluetooth> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  FlutterBlue flutterBlue = FlutterBlue.instance;
   List<BluetoothDevice> devicesList = [];
   bool devicesDiscovered = false;
   //bool permGranted = false;
@@ -234,8 +234,14 @@ class _BluetoothState extends State<Bluetooth> {
       myController3.clear();
     });
     write(ssid, password);
+<<<<<<< HEAD
     // realmServices.createUser(connectedDevice.name, connectedDevice.id.toString(),
     //     50, 70, "55%", "full_sunlight", "low", "priority_high");
     // Navigator.pop(context);
+=======
+    realmServices.createUser(55, "priority high", "full Sunglight",
+        connectedDevice.id.toString(), connectedDevice.name, "55%", 70, "low");
+    Navigator.pop(context);
+>>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
   }
 }

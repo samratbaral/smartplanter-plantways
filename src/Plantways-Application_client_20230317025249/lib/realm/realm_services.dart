@@ -28,6 +28,7 @@ class RealmServices with ChangeNotifier {
   Future<void> updateSubscriptions() async {
     realm.subscriptions.update((mutableSubscriptions) {
       mutableSubscriptions.clear();
+<<<<<<< HEAD
       if (showAll) {
         mutableSubscriptions.add(realm.all<PlantUserData>(),
             name: queryAllName);
@@ -36,8 +37,11 @@ class RealmServices with ChangeNotifier {
             realm.query<PlantUserData>(r'owner_id == $0', [currentUser?.id]),
             name: queryMyItemsName);
       }
+=======
+      mutableSubscriptions.add(realm.all<PlantUserData>(), name: queryAllName, update: true);
+>>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
     });
-    await realm.subscriptions.waitForSynchronization();
+    //await realm.subscriptions.waitForSynchronization();
   }
 
   Future<void> sessionSwitch() async {
@@ -71,6 +75,7 @@ class RealmServices with ChangeNotifier {
     notifyListeners();
   }
 
+<<<<<<< HEAD
   Future<void> createItem(String plantName, bool isComplete, String potName,
       String potMac, Set<String> sensorData, List<String> potConnect) async {
     final newItem = PlantUserData(
@@ -79,6 +84,63 @@ class RealmServices with ChangeNotifier {
         isComplete: isComplete,
         potConnection: potConnect);
     realm.write<PlantUserData>(() => realm.add<PlantUserData>(newItem));
+=======
+// String potPlantname,
+//       String potMacAdrress,
+//       int humidity,
+//       int temperature,
+//       String soilMoisture,
+//       String lightIntensity,
+//       String waterTankLevel,
+//       String levelSensor)
+  void createUser(
+    int humidity,
+    String levelSensor,
+    String lightIntensity,
+    String potMacAdrress,
+    String potPlantname,
+    String soilMoisture,
+    int temperature,
+    String waterTankLevel,
+  ) async {
+    //  if (realm.subscriptions.isEmpty) {
+    await updateSubscriptions();
+    //   }
+    realm.write(() {
+      realm.add(PlantUserData(
+        ObjectId(),
+        humidity: humidity,
+        false,
+        levelSensor: levelSensor,
+        lightIntensity: lightIntensity,
+        potMacAdrress: potMacAdrress,
+        potPlantname: potPlantname,
+        soilMoisture: soilMoisture,
+        temperature: temperature,
+        username: currentUser!.id,
+        waterTankLevel: waterTankLevel,
+      ));
+    });
+    // realm.subscriptions.update((MutableSubscriptionSet mutableSubscriptions) {
+    //   final newItem = PlantUserData(
+    //     ObjectId(),
+    //     humidity: humidity,
+    //     false,
+    //     levelSensor: levelSensor,
+    //     lightIntensity: lightIntensity,
+    //     potMacAdrress: potMacAdrress,
+    //     potPlantname: potPlantname,
+    //     soilMoisture: soilMoisture,
+    //     temperature: temperature,
+    //     username: currentUser!.id,
+    //     waterTankLevel: waterTankLevel,
+    //   );
+
+    //   realm.write<PlantUserData>(() => realm.add<PlantUserData>(newItem));
+    //   realm.subscriptions.waitForSynchronization();
+    // });
+    realm.subscriptions.waitForSynchronization();
+>>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
     notifyListeners();
   }
 
@@ -87,11 +149,12 @@ class RealmServices with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateItem(PlantUserData item,
-      {String? summary, bool? isComplete}) async {
-    realm.write(() {});
-    notifyListeners();
-  }
+  // Future<void> updateItem(PlantUserData item,
+  //     {String? summary, bool? isComplete}) async {
+  //   realm.write(() {
+  //   });
+  //   notifyListeners();
+  // }
 
   Future<void> close() async {
     if (currentUser != null) {

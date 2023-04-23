@@ -254,8 +254,8 @@ class _PlantPageState extends State<PlantPage> {
       ),
 
       floatingActionButton: FloatingActionButton.large(onPressed: (){
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => BluetoothPage()));
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPlanterForm()));
+         Navigator.push(context, MaterialPageRoute(builder: (context) => Bluetooth()));
+       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPlanterForm()));
       },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),),
