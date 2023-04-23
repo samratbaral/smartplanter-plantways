@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_todo/components/bluetooth_plus.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/screens/account_page.dart';
 import 'package:flutter_todo/screens/home_screen.dart';
@@ -75,14 +76,15 @@ class App extends StatelessWidget {
             ),
           )),
         ),
-        initialRoute: currentUser != null ? '/welcome' : '/login',
+        initialRoute: currentUser != null ? '/welcome' : '/welcome',
         routes: {
-          '/homepage': (context) => const HomePage(),
+          // '/login': (context) => LogIn(), // Original To Do
+          // '/homepage': (context) => const HomePage(), // Original To Do
+          // '/dashboard': (context) => const PlantDashboard() // Original Animation
           '/welcome': (context) => const WelcomePage(),
-          '/login': (context) => LogIn(),
           '/plantpage': (context) => const PlantPage(),
           '/accountpage': (context) => const AccountPage(),
-          '/dashboard': (context) => const PlantDashboard()
+          '/bluetoothpage': (context) => const FlutterBlueApp(),
         },
       ),
     );

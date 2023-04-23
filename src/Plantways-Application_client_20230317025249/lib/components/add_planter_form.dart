@@ -1,16 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter_todo/components/bluetooth.dart';
 
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rive/rive.dart';
+import 'package:flutter_todo/realm/realm_services.dart';
+import 'package:flutter_todo/screens/home_screen.dart';
 
-import 'package:flutter_todo/screens/welcome.dart';
-import 'package:flutter_todo/realm/app_services.dart';
-import 'package:flutter_todo/components/widgets.dart';
-import 'package:flutter_todo/screens/plant_dashboard.dart';
+// Bluetooth Blue +
+import 'dart:async';
+import 'dart:io';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_todo/components/bluetooth_plus.dart';
+import 'bluetooth_widget.dart';
+
+// Bluetooth Blue
+// import 'package:permission_handler/permission_handler.dart';
+// import 'dart:convert';
+// import 'dart:io';
+// import 'dart:math';
 
 class AddPlanterForm extends StatefulWidget {
   const AddPlanterForm({
@@ -29,35 +42,29 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   late SMITrigger confetti;
   bool isShowLoading = false;
   bool isShowConfetti = false;
-
-  // bool _isLogin = true;
   String? _errorMessage;
-
   late TextEditingController _pot_nameController;
   late TextEditingController _pot_plantnameController;
-  late TextEditingController _pot_mac_adrressController;
-  late TextEditingController _humidityController;
-  late TextEditingController _temperatureController;
-  late TextEditingController _soilMoistureController;
-  late TextEditingController _lightIntensityController;
-  late TextEditingController _waterTankLevelController;
-  late TextEditingController _levelSensorController;
+  late TextEditingController _wifiController;
+  late TextEditingController _passwordController;
+  late TextEditingController _nameBLEController;
+
+  // Bluetooth
+  // int selectedTile = -1;
+  // FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  // List<BluetoothDevice> devicesList = [];
+  // bool devicesDiscovered = false;
+  // late StreamSubscription<List<ScanResult>> scanSubscription;
+  // late String ssid;
+  // late String password;
 
   @override
   void initState() {
     _pot_nameController = TextEditingController()..addListener(clearError);
     _pot_plantnameController = TextEditingController()..addListener(clearError);
-    _pot_mac_adrressController = TextEditingController()
-      ..addListener(clearError);
-    _humidityController = TextEditingController()..addListener(clearError);
-    _temperatureController = TextEditingController()..addListener(clearError);
-    _soilMoistureController = TextEditingController()..addListener(clearError);
-    _lightIntensityController = TextEditingController()
-      ..addListener(clearError);
-    _waterTankLevelController = TextEditingController()
-      ..addListener(clearError);
-    _levelSensorController = TextEditingController()..addListener(clearError);
-
+    _wifiController = TextEditingController()..addListener(clearError);
+    _passwordController = TextEditingController()..addListener(clearError);
+    _nameBLEController = TextEditingController()..addListener(clearError);
     super.initState();
   }
 
@@ -65,13 +72,15 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   void dispose() {
     _pot_nameController.dispose();
     _pot_plantnameController.dispose();
-    _pot_mac_adrressController.dispose();
-    _humidityController.dispose();
-    _temperatureController.dispose();
-    _soilMoistureController.dispose();
-    _lightIntensityController.dispose();
-    _waterTankLevelController.dispose();
-    _levelSensorController.dispose();
+    _nameBLEController.dispose();
+
+    //bluetooth
+    // _wifiController.dispose();
+    // _passwordController.dispose();
+    //
+    // devicesList.clear();
+    // devicesDiscovered = false;
+    // scanSubscription.cancel();
     super.dispose();
   }
 
@@ -93,33 +102,37 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
     confetti = controller.findInput<bool>("Trigger explosion") as SMITrigger;
   }
 
-  void AddInPlanter(
-      BuildContext context,
-      String pot_name,
-      String pot_plantname,
-      String pot_mac_adrress,
-      int humidity,
-      int temperature,
-      String soilMoisture,
-      String lightIntensity,
-      String waterTankLevel,
-      String levelSensor) async {
+  void addInPlanter(BuildContext context, String plantName, String potName,
+      String wifi, String password) async {
     // confetti.fire();
     // clearError();
     setState(() {
       isShowConfetti = true;
       isShowLoading = true;
     });
-    // final appServices = Provider.of<AppServices>(context, listen: false);
-    // clearError();
-    // await appServices.logInUserEmailPassword(email, password);
+
+    List<String> potConnection = [wifi, password];
+    // potConnection.add(wifi);
+    // potConnection.add(password);
+    const potMac = "10101010100101";
+    const potSensor = {
+      "Low Humidity",
+      "Low Light",
+      "Dry Soil",
+      "Low Level",
+      "Good Temperature"
+    };
+    final realmServices = Provider.of<RealmServices>(context, listen: false);
+    clearError();
+    await realmServices.createItem(
+        plantName, false, potName, potMac, potSensor, potConnection);
     Future.delayed(
       const Duration(seconds: 1),
       () {
         if (_formKey.currentState!.validate()) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Adding New Planter and Plant'),
+              content: const Text('Connect New Smart Planter'),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
                 borderRadius:
@@ -144,7 +157,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                   context,
                   MaterialPageRoute(
                     //  Goes to homepage.dart
-                    builder: (context) => const PlantDashboard(),
+                    builder: (context) => const PlantPage(),
                   ),
                 );
               });
@@ -165,7 +178,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                   context,
                   MaterialPageRoute(
                     //  Goes to welcome.dart
-                    builder: (context) => const WelcomePage(),
+                    builder: (context) => const PlantPage(),
                   ),
                 );
               });
@@ -188,7 +201,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
               children: [
                 //form fields
                 const Text(
-                  "Planter Pot",
+                  "Pot Name",
                   style: TextStyle(
                     color: Colors.black45,
                   ),
@@ -208,14 +221,11 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                       if (value!.isEmpty) {
                         return "Invalid Pot Name";
                       }
-                      // if(value.contains('@')){
-                      //   return "Error <Your Address>@<Service Address>.<Service Route>";
-                      // }
                       return null;
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter Your Pot Name',
-                      labelText: 'Planter Pot',
+                      labelText: 'Pot Name',
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: SvgPicture.asset("assets/icons/email.svg"),
@@ -233,8 +243,6 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 8),
                   child: TextFormField(
-                    // onSaved: (value) =>
-                    //     _emailController = value as TextEditingController,
                     controller: _pot_plantnameController,
                     keyboardType: TextInputType.name,
                     onSaved: (value) {
@@ -245,9 +253,6 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                       if (value!.isEmpty) {
                         return "Invalid Plant Name";
                       }
-                      // if(value.contains('@')){
-                      //   return "Error <Your Address>@<Service Address>.<Service Route>";
-                      // }
                       return null;
                     },
                     decoration: InputDecoration(
@@ -255,14 +260,14 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                       labelText: 'Plant Name',
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/email.svg"),
+                        child: SvgPicture.asset("assets/icons/password.svg"),
                       ),
                     ),
                     maxLength: 20,
                   ),
                 ),
                 const Text(
-                  "Planter Mac Address",
+                  "Wifi",
                   style: TextStyle(
                     color: Colors.black45,
                   ),
@@ -270,36 +275,31 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 8),
                   child: TextFormField(
-                    // onSaved: (value) =>
-                    //     _emailController = value as TextEditingController,
-                    controller: _pot_mac_adrressController,
+                    controller: _wifiController,
                     keyboardType: TextInputType.name,
                     onSaved: (value) {
-                      _pot_mac_adrressController.text = value!;
+                      _wifiController.text = value!;
                     },
                     textInputAction: TextInputAction.done,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Invalid Mac Address";
+                        return "Invalid WiFi Name";
                       }
-                      // if(value.contains('@')){
-                      //   return "Error <Your Address>@<Service Address>.<Service Route>";
-                      // }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: 'Enter Your Planter Mac Address',
-                      labelText: 'Planter Mac Address',
+                      hintText: 'Enter Your WiFi',
+                      labelText: 'WiFi',
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/email.svg"),
+                        child: SvgPicture.asset("assets/icons/password.svg"),
                       ),
                     ),
                     maxLength: 20,
                   ),
                 ),
                 const Text(
-                  "Humidity",
+                  "Password",
                   style: TextStyle(
                     color: Colors.black45,
                   ),
@@ -307,249 +307,39 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 8),
                   child: TextFormField(
-                    // onSaved: (value) =>
-                    //     _emailController = value as TextEditingController,
-                    controller: _humidityController,
-                    keyboardType: TextInputType.number,
+                    controller: _passwordController,
+                    keyboardType: TextInputType.name,
                     onSaved: (value) {
-                      _humidityController.text = value!;
+                      _passwordController.text = value!;
                     },
                     textInputAction: TextInputAction.done,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Invalid Humidity";
+                        return "Invalid WiFi Password";
                       }
-                      // if(value.contains('@')){
-                      //   return "Error <Your Address>@<Service Address>.<Service Route>";
-                      // }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: 'Enter Humidity',
-                      labelText: 'Humidity',
+                      hintText: 'Enter Your WiFi Password',
+                      labelText: 'Password',
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/email.svg"),
+                        child: SvgPicture.asset("assets/icons/password.svg"),
                       ),
                     ),
                     maxLength: 20,
                   ),
                 ),
-                const Text(
-                  "Temperature",
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    // onSaved: (value) =>
-                    //     _emailController = value as TextEditingController,
-                    controller: _temperatureController,
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _temperatureController.text = value!;
-                    },
-                    textInputAction: TextInputAction.done,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Invalid Temperature";
-                      }
-                      // if(value.contains('@')){
-                      //   return "Error <Your Address>@<Service Address>.<Service Route>";
-                      // }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Enter Temperature',
-                      labelText: 'Temperature',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/email.svg"),
-                      ),
-                    ),
-                    maxLength: 20,
-                  ),
-                ),
-                const Text(
-                  "Soil Moisture",
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Invalid Soil Moisture";
-                      }
-                      if (value.length < 8) {
-                        return "Minimum 8 Characters required";
-                      }
-
-                      return null;
-                    },
-                    // onSaved: (value) =>
-                    //     _passwordController = value as TextEditingController,
-                    controller: _soilMoistureController,
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _soilMoistureController.text = value!;
-                    },
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      hintText: 'Enter Soil Moisture',
-                      labelText: 'Soil Moisture',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/password.svg"),
-                      ),
-                    ),
-                    maxLength: 30,
-                  ),
-                ),
-                const Text(
-                  "Light",
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Invalid Light";
-                      }
-                      if (value.length < 8) {
-                        return "Minimum 8 Characters required";
-                      }
-
-                      return null;
-                    },
-                    // onSaved: (value) =>
-                    //     _passwordController = value as TextEditingController,
-                    controller: _lightIntensityController,
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _lightIntensityController.text = value!;
-                    },
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      hintText: 'Enter Light',
-                      labelText: 'Light',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/password.svg"),
-                      ),
-                    ),
-                    maxLength: 30,
-                  ),
-                ),
-
-                const Text(
-                  "Water Level",
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Invalid Water Level";
-                      }
-                      if (value.length < 8) {
-                        return "Minimum 8 Characters required";
-                      }
-
-                      return null;
-                    },
-                    // onSaved: (value) =>
-                    //     _passwordController = value as TextEditingController,
-                    controller: _waterTankLevelController,
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _waterTankLevelController.text = value!;
-                    },
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      hintText: 'Enter Water Level',
-                      labelText: 'Water Level',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/password.svg"),
-                      ),
-                    ),
-                    maxLength: 30,
-                  ),
-                ),
-
-                const Text(
-                  "Level Height",
-                  style: TextStyle(
-                    color: Colors.black45,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Invalid Height Again";
-                      }
-                      if (value.length < 8) {
-                        return "Minimum 8 Characters required";
-                      }
-                      return null;
-                    },
-                    // onSaved: (value) =>
-                    //     _passwordController = value as TextEditingController,
-                    controller: _levelSensorController,
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _levelSensorController.text = value!;
-                    },
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      hintText: 'Enter Level Height',
-                      labelText: 'Level Height',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset("assets/icons/password.svg"),
-                      ),
-                    ),
-                    maxLength: 30,
-                  ),
-                ),
-
                 Padding(
                     padding: const EdgeInsets.only(top: 8, bottom: 8),
                     child: ElevatedButton.icon(
-                      // onPressed: () {
-                      //   //Goes to sinIn function
-                      //   singIn(context);
-                      // },
                       onPressed: () {
-                        //BuildContext context, String pot_name, String pot_plantname, String pot_mac_adrress, int humidity, int temperature, String soilMoisture, String lightIntensity, String waterTankLevel, String levelSensor
-                        AddInPlanter(
+                        addInPlanter(
                             context,
                             _pot_nameController.text,
                             _pot_plantnameController.text,
-                            _pot_mac_adrressController.text,
-                            _humidityController as int,
-                            _temperatureController as int,
-                            _soilMoistureController.text,
-                            _lightIntensityController.text,
-                            _waterTankLevelController.text,
-                            _levelSensorController.text);
+                            _wifiController.text,
+                            _passwordController.text);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(41, 171, 135, 30),

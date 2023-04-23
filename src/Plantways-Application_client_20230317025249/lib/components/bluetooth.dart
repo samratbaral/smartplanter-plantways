@@ -151,35 +151,35 @@ class _BluetoothState extends State<Bluetooth> {
             Text('1) Start Bluetooth scan and connect to your device'),
             devicesDiscovered
                 ? Container(
-              height: 300,
-              width: 600,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 5, color: Colors.black)),
-              child: ListView.builder(
-                  itemCount: devicesList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    BluetoothDevice device = devicesList[index];
-                    return ListTile(
-                      title: Text(device.name),
-                      subtitle: Text(device.id.toString()),
-                      selected: index == selectedTile,
-                      selectedTileColor: Colors.lightBlue,
-                      onTap: () async {
-                        setState(() {
-                          selectedTile = index;
-                          connectedDevice = device;
-                          print(connectedDevice);
-                        });
-                        isConnected = await connect(device);
-                        showMessage(isConnected);
-                      },
-                    );
-                  }),
-            )
+                    height: 300,
+                    width: 600,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 5, color: Colors.black)),
+                    child: ListView.builder(
+                        itemCount: devicesList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          BluetoothDevice device = devicesList[index];
+                          return ListTile(
+                            title: Text(device.name),
+                            subtitle: Text(device.id.toString()),
+                            selected: index == selectedTile,
+                            selectedTileColor: Colors.lightBlue,
+                            onTap: () async {
+                              setState(() {
+                                selectedTile = index;
+                                connectedDevice = device;
+                                print(connectedDevice);
+                              });
+                              isConnected = await connect(device);
+                              showMessage(isConnected);
+                            },
+                          );
+                        }),
+                  )
                 : FloatingActionButton(
-              onPressed: startScan,
-              child: Text('Start Scan'),
-            ),
+                    onPressed: startScan,
+                    child: Text('Start Scan'),
+                  ),
             const Text('2) Enter Wi-Fi SSID and password'),
             SizedBox(
               height: 25,
@@ -234,8 +234,8 @@ class _BluetoothState extends State<Bluetooth> {
       myController3.clear();
     });
     write(ssid, password);
-    realmServices.createUser(connectedDevice.name, connectedDevice.id.toString(),
-        50, 70, "55%", "full_sunlight", "low", "priority_high");
-    Navigator.pop(context);
+    // realmServices.createUser(connectedDevice.name, connectedDevice.id.toString(),
+    //     50, 70, "55%", "full_sunlight", "low", "priority_high");
+    // Navigator.pop(context);
   }
 }

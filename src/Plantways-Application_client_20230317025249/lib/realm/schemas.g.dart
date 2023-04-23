@@ -11,40 +11,30 @@ class PlantUserData extends _PlantUserData
   static var _defaultsSet = false;
 
   PlantUserData(
-    ObjectId id, {
+    ObjectId id,
+    String plantName,
+    String potName,
+    String potMac,
+    String ownerId, {
     bool isComplete = false,
-    String? username,
-    String? pot_plantname,
-    String? pot_mac_adrress,
-    int? humidity = 0,
-    int? temperature = 0,
-    String? soilMoisture = '0',
-    String? lightIntensity = '0',
-    String? waterTankLevel = '0',
-    String? levelSensor = '0',
+    Iterable<String> potConnection = const [],
+    Set<String> potSensorData = const {},
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<PlantUserData>({
         'isComplete': false,
-        'humidity': 0,
-        'temperature': 0,
-        'soilMoisture': '0',
-        'lightIntensity': '0',
-        'waterTankLevel': '0',
-        'levelSensor': '0',
       });
     }
     RealmObjectBase.set(this, '_id', id);
     RealmObjectBase.set(this, 'isComplete', isComplete);
-    RealmObjectBase.set(this, 'username', username);
-    RealmObjectBase.set(this, 'pot_plantname', pot_plantname);
-    RealmObjectBase.set(this, 'pot_mac_adrress', pot_mac_adrress);
-    RealmObjectBase.set(this, 'humidity', humidity);
-    RealmObjectBase.set(this, 'temperature', temperature);
-    RealmObjectBase.set(this, 'soilMoisture', soilMoisture);
-    RealmObjectBase.set(this, 'lightIntensity', lightIntensity);
-    RealmObjectBase.set(this, 'waterTankLevel', waterTankLevel);
-    RealmObjectBase.set(this, 'levelSensor', levelSensor);
+    RealmObjectBase.set(this, 'plantName', plantName);
+    RealmObjectBase.set(this, 'potName', potName);
+    RealmObjectBase.set(this, 'potMac', potMac);
+    RealmObjectBase.set(this, 'owner_id', ownerId);
+    RealmObjectBase.set<RealmList<String>>(
+        this, 'potConnection', RealmList<String>(potConnection));
+    RealmObjectBase.set<RealmSet<String>>(
+        this, 'potSensorData', RealmSet<String>(potSensorData));
   }
 
   PlantUserData._();
@@ -60,63 +50,39 @@ class PlantUserData extends _PlantUserData
   set isComplete(bool value) => RealmObjectBase.set(this, 'isComplete', value);
 
   @override
-  String? get username =>
-      RealmObjectBase.get<String>(this, 'username') as String?;
+  String get plantName =>
+      RealmObjectBase.get<String>(this, 'plantName') as String;
   @override
-  set username(String? value) => RealmObjectBase.set(this, 'username', value);
+  set plantName(String value) => RealmObjectBase.set(this, 'plantName', value);
 
   @override
-  String? get pot_plantname =>
-      RealmObjectBase.get<String>(this, 'pot_plantname') as String?;
+  String get potName => RealmObjectBase.get<String>(this, 'potName') as String;
   @override
-  set pot_plantname(String? value) =>
-      RealmObjectBase.set(this, 'pot_plantname', value);
+  set potName(String value) => RealmObjectBase.set(this, 'potName', value);
 
   @override
-  String? get pot_mac_adrress =>
-      RealmObjectBase.get<String>(this, 'pot_mac_adrress') as String?;
+  String get potMac => RealmObjectBase.get<String>(this, 'potMac') as String;
   @override
-  set pot_mac_adrress(String? value) =>
-      RealmObjectBase.set(this, 'pot_mac_adrress', value);
+  set potMac(String value) => RealmObjectBase.set(this, 'potMac', value);
 
   @override
-  int? get humidity => RealmObjectBase.get<int>(this, 'humidity') as int?;
+  RealmList<String> get potConnection =>
+      RealmObjectBase.get<String>(this, 'potConnection') as RealmList<String>;
   @override
-  set humidity(int? value) => RealmObjectBase.set(this, 'humidity', value);
+  set potConnection(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
 
   @override
-  int? get temperature => RealmObjectBase.get<int>(this, 'temperature') as int?;
+  RealmSet<String> get potSensorData =>
+      RealmObjectBase.get<String>(this, 'potSensorData') as RealmSet<String>;
   @override
-  set temperature(int? value) =>
-      RealmObjectBase.set(this, 'temperature', value);
+  set potSensorData(covariant RealmSet<String> value) =>
+      throw RealmUnsupportedSetError();
 
   @override
-  String? get soilMoisture =>
-      RealmObjectBase.get<String>(this, 'soilMoisture') as String?;
+  String get ownerId => RealmObjectBase.get<String>(this, 'owner_id') as String;
   @override
-  set soilMoisture(String? value) =>
-      RealmObjectBase.set(this, 'soilMoisture', value);
-
-  @override
-  String? get lightIntensity =>
-      RealmObjectBase.get<String>(this, 'lightIntensity') as String?;
-  @override
-  set lightIntensity(String? value) =>
-      RealmObjectBase.set(this, 'lightIntensity', value);
-
-  @override
-  String? get waterTankLevel =>
-      RealmObjectBase.get<String>(this, 'waterTankLevel') as String?;
-  @override
-  set waterTankLevel(String? value) =>
-      RealmObjectBase.set(this, 'waterTankLevel', value);
-
-  @override
-  String? get levelSensor =>
-      RealmObjectBase.get<String>(this, 'levelSensor') as String?;
-  @override
-  set levelSensor(String? value) =>
-      RealmObjectBase.set(this, 'levelSensor', value);
+  set ownerId(String value) => RealmObjectBase.set(this, 'owner_id', value);
 
   @override
   Stream<RealmObjectChanges<PlantUserData>> get changes =>
@@ -134,18 +100,14 @@ class PlantUserData extends _PlantUserData
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('isComplete', RealmPropertyType.bool),
-      SchemaProperty('username', RealmPropertyType.string, optional: true),
-      SchemaProperty('pot_plantname', RealmPropertyType.string, optional: true),
-      SchemaProperty('pot_mac_adrress', RealmPropertyType.string,
-          optional: true),
-      SchemaProperty('humidity', RealmPropertyType.int, optional: true),
-      SchemaProperty('temperature', RealmPropertyType.int, optional: true),
-      SchemaProperty('soilMoisture', RealmPropertyType.string, optional: true),
-      SchemaProperty('lightIntensity', RealmPropertyType.string,
-          optional: true),
-      SchemaProperty('waterTankLevel', RealmPropertyType.string,
-          optional: true),
-      SchemaProperty('levelSensor', RealmPropertyType.string, optional: true),
+      SchemaProperty('plantName', RealmPropertyType.string),
+      SchemaProperty('potName', RealmPropertyType.string),
+      SchemaProperty('potMac', RealmPropertyType.string),
+      SchemaProperty('potConnection', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
+      SchemaProperty('potSensorData', RealmPropertyType.string,
+          collectionType: RealmCollectionType.set),
+      SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
     ]);
   }
 }

@@ -75,19 +75,19 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: [
                     const Spacer(),
                     SizedBox(
-                      width: 460,
+                      width: 400,
                       child: Column(
                         children: const [
                           Text(
                             "Plantways",
                             style: TextStyle(
-                              fontSize: 60,
+                              fontSize: 57,
                               fontWeight: FontWeight.w800,
                               fontFamily: "Poppins",
-                              height: 1.3,
+                              height: 1.2,
                             ),
                           ),
-                          SizedBox(height: 1),
+                          SizedBox(height: 0.5),
                           Text(
                             "Smart App thats connects to your Smart Planter.",
                           ),
@@ -102,7 +102,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Text(
                             "Growth Takes Time.",
                             style: TextStyle(
-                              fontSize: 40,
+                              fontSize: 35,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Poppins",
                               height: 1.2,
@@ -119,7 +119,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Text(
                             "Don’t Skip Watering.",
                             style: TextStyle(
-                              fontSize: 40,
+                              fontSize: 35,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Poppins",
                               height: 1.2,
@@ -136,7 +136,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Text(
                             "Take Care of Your Plant.",
                             style: TextStyle(
-                              fontSize: 40,
+                              fontSize: 35,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Poppins",
                               height: 1.2,

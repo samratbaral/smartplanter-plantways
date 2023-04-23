@@ -18,8 +18,8 @@ class AnimatedBtn extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        height: 70,
-        width: 236,
+        height: 60,
+        width: 220,
         child: Stack(
           children: [
             RiveAnimation.asset(
@@ -65,8 +65,8 @@ class AnimatedBtn2 extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        height: 70,
-        width: 236,
+        height: 60,
+        width: 220,
         child: Stack(
           children: [
             RiveAnimation.asset(
@@ -98,9 +98,9 @@ class AnimatedBtn2 extends StatelessWidget {
 class AnimatedBtn3 extends StatelessWidget {
   const AnimatedBtn3({
     Key? key,
-    required RiveAnimationController btnAnimationController2,
+    required RiveAnimationController btnAnimationController3,
     required this.press,
-  })  : _btnAnimationController3 = btnAnimationController2,
+  })  : _btnAnimationController3 = btnAnimationController3,
         super(key: key);
 
   final RiveAnimationController _btnAnimationController3;
@@ -111,12 +111,12 @@ class AnimatedBtn3 extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        height: 70,
-        width: 70,
+        height: 60,
+        width: 190,
         child: Stack(
           children: [
             RiveAnimation.asset(
-              "assets/RiveAssets/add-plant-button.riv",
+              "assets/RiveAssets/button-green.riv",
               controllers: [_btnAnimationController3],
             ),
             Positioned.fill(
@@ -125,8 +125,8 @@ class AnimatedBtn3 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(CupertinoIcons.arrow_right),
-                  const SizedBox(width: 10),
+                  const Icon(CupertinoIcons.plus_circle_fill),
+                  const SizedBox(width: 22),
                   Text(
                     "Add Smart Planter",
                     style: Theme.of(context).textTheme.labelLarge,
