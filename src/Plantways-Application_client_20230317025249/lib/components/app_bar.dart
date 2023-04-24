@@ -12,21 +12,33 @@ class TodoAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     final realmServices = Provider.of<RealmServices>(context);
     return AppBar(
-      title: const Text('The Smart Planter: PlantWays Realm Flutter'),
+      backgroundColor: const Color.fromARGB(255, 130, 197, 91),
+      title: const Text('             Smart Planter'),
       automaticallyImplyLeading: false,
       actions: <Widget>[
+        //bluetooth_connected
         IconButton(
           icon: Icon(realmServices.offlineModeOn
               ? Icons.wifi_off_rounded
               : Icons.wifi_rounded),
+          color: Colors.black,
           tooltip: 'Offline mode',
           onPressed: () async => await realmServices.sessionSwitch(),
         ),
         IconButton(
-          icon: const Icon(Icons.logout),
-          tooltip: 'Log out',
-          onPressed: () async => await logOut(context, realmServices),
+          icon: Icon(realmServices.offlineModeOn
+              ? Icons.bluetooth_disabled
+              : Icons.bluetooth_connected),
+          color: Colors.black,
+          tooltip: 'Offline mode',
+          onPressed: () async => await realmServices.sessionSwitch(),
         ),
+        // IconButton(
+        //   icon: const Icon(Icons.logout),
+        //   color: Colors.black,
+        //   tooltip: 'Log out',
+        //   onPressed: () async => await logOut(context, realmServices),
+        // ),
       ],
     );
   }
