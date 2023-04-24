@@ -6,7 +6,6 @@ import '../../../utils/rive_utils.dart';
 import 'info_card.dart';
 import 'side_menu.dart';
 
-
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
 
@@ -49,19 +48,19 @@ class _SideBarState extends State<SideBar> {
               ),
               ...sidebarMenus
                   .map((menu) => SideMenu(
-                menu: menu,
-                selectedMenu: selectedSideMenu,
-                press: () {
-                  RiveUtils.chnageSMIBoolState(menu.rive.status!);
-                  setState(() {
-                    selectedSideMenu = menu;
-                  });
-                },
-                riveOnInit: (artboard) {
-                  menu.rive.status = RiveUtils.getRiveInput(artboard,
-                      stateMachineName: menu.rive.stateMachineName);
-                },
-              ))
+                        menu: menu,
+                        selectedMenu: selectedSideMenu,
+                        press: () {
+                          RiveUtils.chnageSMIBoolState(menu.rive.status!);
+                          setState(() {
+                            selectedSideMenu = menu;
+                          });
+                        },
+                        riveOnInit: (artboard) {
+                          menu.rive.status = RiveUtils.getRiveInput(artboard,
+                              stateMachineName: menu.rive.stateMachineName);
+                        },
+                      ))
                   .toList(),
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 40, bottom: 16),
@@ -75,19 +74,19 @@ class _SideBarState extends State<SideBar> {
               ),
               ...sidebarMenus2
                   .map((menu) => SideMenu(
-                menu: menu,
-                selectedMenu: selectedSideMenu,
-                press: () {
-                  RiveUtils.chnageSMIBoolState(menu.rive.status!);
-                  setState(() {
-                    selectedSideMenu = menu;
-                  });
-                },
-                riveOnInit: (artboard) {
-                  menu.rive.status = RiveUtils.getRiveInput(artboard,
-                      stateMachineName: menu.rive.stateMachineName);
-                },
-              ))
+                        menu: menu,
+                        selectedMenu: selectedSideMenu,
+                        press: () {
+                          RiveUtils.chnageSMIBoolState(menu.rive.status!);
+                          setState(() {
+                            selectedSideMenu = menu;
+                          });
+                        },
+                        riveOnInit: (artboard) {
+                          menu.rive.status = RiveUtils.getRiveInput(artboard,
+                              stateMachineName: menu.rive.stateMachineName);
+                        },
+                      ))
                   .toList(),
             ],
           ),

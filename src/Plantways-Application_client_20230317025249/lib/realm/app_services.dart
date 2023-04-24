@@ -27,6 +27,16 @@ class AppServices with ChangeNotifier {
     return loggedInUser;
   }
 
+  Future<User> updateUserEmailPassword(String email, String password) async {
+    EmailPasswordAuthProvider authProvider = EmailPasswordAuthProvider(app);
+    await authProvider.registerUser(email, password);
+    User loggedInUser =
+        await app.logIn(Credentials.emailPassword(email, password));
+    currentUser = loggedInUser;
+    notifyListeners();
+    return loggedInUser;
+  }
+
   Future<void> logOut() async {
     await currentUser?.logOut();
     currentUser = null;

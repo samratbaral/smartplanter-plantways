@@ -1,20 +1,11 @@
 import 'package:realm/realm.dart';
 part 'schemas.g.dart';
 
-<<<<<<< HEAD
 @RealmModel()
 class _PlantUserData {
-=======
-// NOTE: These Realm models are private and therefore should be copied into the same .dart file.
-
-@RealmModel()
-class _PlantUserData {
-  @PrimaryKey()
->>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
   @MapTo('_id')
   @PrimaryKey()
   late ObjectId id;
-<<<<<<< HEAD
   bool isComplete = false;
   late String plantName;
   late String potName;
@@ -23,30 +14,6 @@ class _PlantUserData {
   late Set<String> potSensorData;
   @MapTo('owner_id')
   late String ownerId;
-=======
-
-  int? humidity;
-
-  late bool isComplete;
-
-  String? levelSensor;
-
-  String? lightIntensity;
-
-  @MapTo('pot_mac_adrress')
-  String? potMacAdrress;
-
-  @MapTo('pot_plantname')
-  String? potPlantname;
-
-  String? soilMoisture;
-
-  int? temperature;
-
-  String? username;
-
-  String? waterTankLevel;
->>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
 }
 /*
 ---- User Schema -------

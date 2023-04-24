@@ -5,6 +5,7 @@ class StatCard extends StatelessWidget {
   final String humidity;
   final String light;
   final String water;
+  final String soil;
 
   const StatCard({
     super.key,
@@ -12,6 +13,7 @@ class StatCard extends StatelessWidget {
     required this.humidity,
     required this.light,
     required this.water,
+    required this.soil,
   });
 
   @override
@@ -33,6 +35,14 @@ class StatCard extends StatelessWidget {
             const SizedBox(height: 10.0),
             Text(
               'Humidity: $humidity',
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Text(
+              'Soil: $soil',
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,

@@ -6,10 +6,10 @@ import '../../../model/menu.dart';
 class SideMenu extends StatelessWidget {
   const SideMenu(
       {super.key,
-        required this.menu,
-        required this.press,
-        required this.riveOnInit,
-        required this.selectedMenu});
+      required this.menu,
+      required this.press,
+      required this.riveOnInit,
+      required this.selectedMenu});
 
   final Menu menu;
   final VoidCallback press;

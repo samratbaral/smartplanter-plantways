@@ -20,8 +20,8 @@ import 'package:flutter_todo/components/bluetooth_plus.dart';
 import 'bluetooth_widget.dart';
 
 // Bluetooth Blue
-// import 'package:permission_handler/permission_handler.dart';
-// import 'dart:convert';
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:convert';
 // import 'dart:io';
 // import 'dart:math';
 
@@ -48,15 +48,16 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   late TextEditingController _wifiController;
   late TextEditingController _passwordController;
   late TextEditingController _nameBLEController;
+  late TextEditingController _macBLEController;
 
   // Bluetooth
-  // int selectedTile = -1;
-  // FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
-  // List<BluetoothDevice> devicesList = [];
-  // bool devicesDiscovered = false;
-  // late StreamSubscription<List<ScanResult>> scanSubscription;
-  // late String ssid;
-  // late String password;
+  int selectedTile = -1;
+  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  List<BluetoothDevice> devicesList = [];
+  bool devicesDiscovered = false;
+  late BluetoothCharacteristic characteristicToWrite;
+  late BluetoothDevice connectedDevice;
+  late StreamSubscription<List<ScanResult>> scanSubscription;
 
   @override
   void initState() {
@@ -65,6 +66,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
     _wifiController = TextEditingController()..addListener(clearError);
     _passwordController = TextEditingController()..addListener(clearError);
     _nameBLEController = TextEditingController()..addListener(clearError);
+    _macBLEController = TextEditingController()..addListener(clearError);
     super.initState();
   }
 
@@ -72,15 +74,17 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   void dispose() {
     _pot_nameController.dispose();
     _pot_plantnameController.dispose();
+    _wifiController.dispose();
+    _passwordController.dispose();
     _nameBLEController.dispose();
+    _macBLEController.dispose();
 
     //bluetooth
     // _wifiController.dispose();
     // _passwordController.dispose();
-    //
-    // devicesList.clear();
-    // devicesDiscovered = false;
-    // scanSubscription.cancel();
+    devicesList.clear();
+    devicesDiscovered = false;
+    scanSubscription.cancel();
     super.dispose();
   }
 
@@ -103,7 +107,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   }
 
   void addInPlanter(BuildContext context, String plantName, String potName,
-      String wifi, String password) async {
+      String wifi, String password, DeviceIdentifier id) async {
     // confetti.fire();
     // clearError();
     setState(() {
@@ -191,6 +195,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool isConnected;
     return Stack(
       children: [
         SingleChildScrollView(
@@ -199,7 +204,62 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                    '1) Start Bluetooth scan and connect to your device'),
+                devicesDiscovered
+                    ? Container(
+                        height: 300,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 5, color: Colors.black)),
+                        child: ListView.builder(
+                            itemCount: devicesList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              BluetoothDevice device = devicesList[index];
+                              return ListTile(
+                                title: Text(device.name),
+                                subtitle: Text(device.id.toString()),
+                                selected: index == selectedTile,
+                                selectedTileColor: Colors.lightBlue,
+                                onTap: () async {
+                                  setState(() {
+                                    selectedTile = index;
+                                    connectedDevice = device;
+                                    print(connectedDevice);
+                                  });
+                                  isConnected = await connect(device);
+                                  showMessage(isConnected);
+                                  // _nameBLEController = connectedDevice as TextEditingController;
+                                  // _macBLEController = connectedDevice.id.toString() as TextEditingController;
+                                },
+                              );
+                            }),
+                      )
+                    : FloatingActionButton(
+                        onPressed: startScan,
+                        child: const Text('Start Scan'),
+                      ),
                 //form fields
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 8, bottom: 8),
+                //   child: TextFormField(
+                //     controller: _nameBLEController,
+                //     onSaved: (connectedDevice) {
+                //       _nameBLEController.text = connectedDevice!;
+                //     },
+                //     textInputAction: TextInputAction.done,
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 8, bottom: 8),
+                //   child: TextFormField(
+                //     controller: _macBLEController,
+                //     onSaved: (connectedDevice) {
+                //       _macBLEController.text = connectedDevice!;
+                //     },
+                //     textInputAction: TextInputAction.done,
+                //   ),
+                // ),
                 const Text(
                   "Pot Name",
                   style: TextStyle(
@@ -335,11 +395,14 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                     child: ElevatedButton.icon(
                       onPressed: () {
                         addInPlanter(
-                            context,
-                            _pot_nameController.text,
-                            _pot_plantnameController.text,
-                            _wifiController.text,
-                            _passwordController.text);
+                          context,
+                          _pot_nameController.text,
+                          _pot_plantnameController.text,
+                          _wifiController.text,
+                          _passwordController.text,
+                          connectedDevice.id,
+                          // connectedDevice.name, connectedDevice.id.toString(),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(41, 171, 135, 30),
@@ -354,7 +417,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                         ),
                       ),
                       icon: const Icon(
-                        CupertinoIcons.arrow_right,
+                        CupertinoIcons.arrow_down_square_fill,
                         color: Color.fromRGBO(0, 102, 0, 90),
                       ),
                       // Sign In Name
@@ -386,6 +449,87 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
             : const SizedBox(),
       ],
     );
+  }
+
+  Future<void> startScan() async {
+    var status = await Permission.bluetoothScan.request();
+    var connectStatus = await Permission.bluetoothConnect.request();
+    if (status.isGranted && connectStatus.isGranted) {
+      flutterBlue.startScan(timeout: const Duration(seconds: 3));
+
+      scanSubscription = flutterBlue.scanResults.listen((results) {
+        for (ScanResult result in results) {
+          if (!devicesList.contains(result.device)) {
+            setState(() {
+              devicesList.add(result.device);
+              devicesDiscovered = true;
+            });
+          }
+        }
+      });
+      flutterBlue.stopScan();
+    } else {
+      print('Error scanning');
+    }
+  }
+
+  Future<bool> connect(BluetoothDevice device) async {
+    Future<bool> isConnected = Future.value(true);
+
+    await device.connect().timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {
+        isConnected = Future.value(false);
+      },
+    );
+    // await device.connect();
+
+    String serviceUUID;
+    String characteristicUUID;
+    if (await isConnected) {
+      List<BluetoothService> services = await device.discoverServices();
+      for (BluetoothService service in services) {
+        print('Service UUID: ${service.uuid.toString()}');
+        List<BluetoothCharacteristic> characteristics = service.characteristics;
+        for (BluetoothCharacteristic characteristic in characteristics) {
+          print('Characteristic UUID: ${characteristic.uuid.toString()}');
+          try {
+            if (characteristic.properties.read) {
+              List<int> value = await characteristic.read();
+              String stringValue = utf8.decode(value);
+              print('Characteristic value: $stringValue');
+              if (stringValue == 'WRITE_HERE') {
+                serviceUUID = service.uuid.toString();
+                characteristicUUID = characteristic.uuid.toString();
+                characteristicToWrite = characteristic;
+                print('Stored service UUID: $serviceUUID');
+                print('Stored characteristic UUID: $characteristicUUID');
+              }
+            }
+          } catch (e) {
+            print('Failed to read characteristic');
+          }
+        }
+      }
+    }
+    // isConnected = Future.value(true);
+
+    return isConnected;
+  }
+
+  void showMessage(bool isConnected) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(isConnected
+          ? "Connected to device!"
+          : "Could not connect to device!"),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: isConnected ? Colors.green : Colors.red,
+    ));
+  }
+
+  Future<void> write(String ssid, String password) async {
+    String data = '$ssid,$password';
+    await characteristicToWrite.write(data.codeUnits);
   }
 
   void clearError() {

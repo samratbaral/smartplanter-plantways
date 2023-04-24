@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/components/bluetooth_plus.dart';
-import 'package:flutter_todo/components/plant_list.dart';
-import 'package:flutter_todo/components/widgets.dart';
-import 'package:realm/realm.dart';
 import 'dart:ui';
 import '../../model/plant.dart';
 import '../components/plant_card.dart';
@@ -12,6 +9,10 @@ import 'package:flutter_todo/components/animated_btn.dart';
 import 'package:flutter_todo/components/add_planter_dialog.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/components/app_bar.dart';
+
+import 'package:flutter_todo/components/plant_list.dart';
+import 'package:flutter_todo/components/widgets.dart';
+import 'package:realm/realm.dart';
 import '../components/bluetooth.dart';
 import 'package:flutter_todo/components/add_planter_form.dart';
 
@@ -141,6 +142,13 @@ class _PlantPageState extends State<PlantPage> {
                                                 bottom: 10,
                                                 right: 10),
                                             child: PlantCard(
+                                              plantName: plant.plantName,
+                                              potName: plant.potName,
+                                              potMac: plant.potMac,
+                                              potConnection:
+                                                  plant.potConnection,
+                                              potSensorData:
+                                                  plant.potSensorData,
                                               name: plant.name,
                                               description: plant.description,
                                               iconSrc: plant.iconSrc,
@@ -151,6 +159,7 @@ class _PlantPageState extends State<PlantPage> {
                                                   plant.humidity.toString(),
                                               light: plant.light,
                                               water: plant.water,
+                                              soil: plant.soil,
                                             ),
                                           ),
                                           // child: PlantPage(),
@@ -177,7 +186,7 @@ class _PlantPageState extends State<PlantPage> {
                     builder: (context) => const FlutterBlueApp()));
           },
           backgroundColor: Colors.black,
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.search),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       );
@@ -254,8 +263,8 @@ class _PlantPageState extends State<PlantPage> {
       ),
 
       floatingActionButton: FloatingActionButton.large(onPressed: (){
-         Navigator.push(context, MaterialPageRoute(builder: (context) => Bluetooth()));
-       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPlanterForm()));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => BluetoothPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPlanterForm()));
       },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),),

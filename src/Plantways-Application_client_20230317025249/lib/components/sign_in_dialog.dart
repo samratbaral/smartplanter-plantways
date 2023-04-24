@@ -374,7 +374,7 @@ void showCustomDialog3(BuildContext context, {required ValueChanged onValue}) {
           child: Scaffold(
               backgroundColor: Colors.transparent,
               body: SizedBox(
-                height: 600,
+                height: 900,
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -384,7 +384,7 @@ void showCustomDialog3(BuildContext context, {required ValueChanged onValue}) {
                           Text(
                             "Connect Smart Planter",
                             style: TextStyle(
-                              fontSize: 34,
+                              fontSize: 32,
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w600,
                             ),
@@ -397,15 +397,15 @@ void showCustomDialog3(BuildContext context, {required ValueChanged onValue}) {
                             ),
                           ),
                           SizedBox(
-                            height: 500,
+                            height: 400,
                             child: AddPlanterForm(),
                           ),
                         ],
                       ),
                     ),
                     const Positioned(
-                      left: 0,
-                      right: 0,
+                      left: 1,
+                      right: 1,
                       bottom: -142,
                       child: CircleAvatar(
                         radius: 16,

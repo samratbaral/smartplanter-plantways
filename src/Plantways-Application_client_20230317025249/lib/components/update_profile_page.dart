@@ -23,22 +23,22 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         children: [
           UserUpdateWidget(box2: userInfo),
           const SizedBox(height: 20),
-          ElevatedButton(
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll<Color>(
-                Color.fromARGB(255, 130, 197, 91),
-              ),
-            ),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Save Successful'),
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
-            },
-            child: const Text('Save Changes'),
-          ),
+          // ElevatedButton(
+          //   style: const ButtonStyle(
+          //     backgroundColor: MaterialStatePropertyAll<Color>(
+          //       Color.fromARGB(255, 130, 197, 91),
+          //     ),
+          //   ),
+          //   onPressed: () {
+          //     ScaffoldMessenger.of(context).showSnackBar(
+          //       const SnackBar(
+          //         content: Text('Save Successful'),
+          //         behavior: SnackBarBehavior.floating,
+          //       ),
+          //     );
+          //   },
+          //   child: const Text('Save Changes'),
+          // ),
         ],
       ),
     );

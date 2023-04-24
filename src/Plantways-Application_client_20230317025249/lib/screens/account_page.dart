@@ -21,24 +21,6 @@ class AccountPage extends StatelessWidget {
           const SizedBox(height: 20),
           UserCardWidget(box: userInfo),
           const SizedBox(height: 20),
-          ElevatedButton(
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll<Color>(
-                Color.fromARGB(255, 130, 197, 91),
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const UpdateProfilePage();
-                  },
-                ),
-              );
-            },
-            child: const Text('Update Account'),
-          ),
         ],
       ),
     );

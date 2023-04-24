@@ -10,10 +10,11 @@ class PlantPage extends StatelessWidget {
     required this.humidity,
     required this.light,
     required this.water,
+    required this.soil,
     this.iconSrc = "assets/icons/code.svg",
   });
   final String name, iconSrc;
-  final String temperature, humidity, light, water;
+  final String temperature, humidity, light, water, soil;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +43,12 @@ class PlantPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             StatCard(
-                temperature: temperature,
-                humidity: humidity,
-                light: light,
-                water: water),
+              temperature: temperature,
+              humidity: humidity,
+              light: light,
+              water: water,
+              soil: soil,
+            ),
 
             // Text(
             //   'Temperature: $temperature',

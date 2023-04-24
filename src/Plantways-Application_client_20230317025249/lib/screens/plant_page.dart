@@ -5,15 +5,24 @@ import 'package:flutter_todo/components/stat_card.dart';
 class PlantPage extends StatelessWidget {
   const PlantPage({
     super.key,
+    required this.plantName,
+    required this.potName,
+    required this.potMac,
+    required this.potConnection,
+    required this.potSensorData,
     required this.name,
     required this.temperature,
     required this.humidity,
     required this.light,
     required this.water,
+    required this.soil,
     this.iconSrc = "assets/icons/code.svg",
   });
+  final String plantName, potName, potMac;
+  final List<String> potConnection;
+  final Set<String> potSensorData;
   final String name, iconSrc;
-  final String temperature, humidity, light, water;
+  final String soil, temperature, humidity, light, water;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +51,7 @@ class PlantPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             StatCard(
+                soil: soil,
                 temperature: temperature,
                 humidity: humidity,
                 light: light,

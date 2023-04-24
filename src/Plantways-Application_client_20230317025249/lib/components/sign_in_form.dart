@@ -32,7 +32,6 @@ class _SignInFormState extends State<SignInForm> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
-
   @override
   void initState() {
     _emailController = TextEditingController()..addListener(clearError);
@@ -127,7 +126,8 @@ class _SignInFormState extends State<SignInForm> {
                   context,
                   MaterialPageRoute(
                     //  Goes to welcome.dart
-                    builder: (context) => const WelcomePage(),
+                    builder: (context) => const HomePage(), // Todo Application
+                    // builder: (context) => const WelcomePage(), // Todo Animation
                   ),
                 );
               });

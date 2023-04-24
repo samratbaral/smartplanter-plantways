@@ -10,7 +10,6 @@ import 'package:flutter_todo/components/menu_btn.dart';
 import 'package:flutter_todo/components/side_bar.dart';
 import 'package:flutter_todo/components/sign_in_dialog.dart';
 
-
 class PlantDashboard extends StatefulWidget {
   const PlantDashboard({super.key});
 
@@ -49,7 +48,7 @@ class _PlantDashboardState extends State<PlantDashboard>
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200))
       ..addListener(
-            () {
+        () {
           setState(() {});
         },
       );
@@ -119,7 +118,7 @@ class _PlantDashboardState extends State<PlantDashboard>
                 }
 
                 setState(
-                      () {
+                  () {
                     isSideBarOpen = !isSideBarOpen;
                   },
                 );
@@ -131,7 +130,7 @@ class _PlantDashboardState extends State<PlantDashboard>
                 artboard.addController(controller!);
 
                 isMenuOpenInput =
-                controller.findInput<bool>("isOpen") as SMIBool;
+                    controller.findInput<bool>("isOpen") as SMIBool;
                 isMenuOpenInput.value = true;
               },
             ),
