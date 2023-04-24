@@ -177,18 +177,18 @@ class _PlantPageState extends State<PlantPage> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton.small(
-          onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => BluetoothPage()));
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const FlutterBlueApp()));
-          },
-          backgroundColor: Colors.black,
-          child: const Icon(Icons.search),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        // floatingActionButton: FloatingActionButton.small(
+        //   onPressed: () {
+        //     // Navigator.push(context, MaterialPageRoute(builder: (context) => BluetoothPage()));
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //             builder: (context) => const FlutterBlueApp()));
+        //   },
+        //   backgroundColor: Colors.black,
+        //   child: const Icon(Icons.search),
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       );
     }
   }

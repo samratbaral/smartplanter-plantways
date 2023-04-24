@@ -15,7 +15,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_todo/components/bluetooth_plus.dart';
 import 'bluetooth_widget.dart';
 
@@ -52,11 +52,13 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
 
   // Bluetooth
   int selectedTile = -1;
-  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  FlutterBlue flutterBlue = FlutterBlue.instance;
   List<BluetoothDevice> devicesList = [];
   bool devicesDiscovered = false;
   late BluetoothCharacteristic characteristicToWrite;
   late BluetoothDevice connectedDevice;
+  late String macAddress;
+  late String deviceName;
   late StreamSubscription<List<ScanResult>> scanSubscription;
 
   @override
@@ -107,7 +109,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
   }
 
   void addInPlanter(BuildContext context, String plantName, String potName,
-      String wifi, String password, DeviceIdentifier id) async {
+      String wifi, String password, String id, String name) async {
     // confetti.fire();
     // clearError();
     setState(() {
@@ -115,10 +117,10 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
       isShowLoading = true;
     });
 
-    List<String> potConnection = [wifi, password];
+    List<String> potConnection = [name,"YOUTHOUGHT", "NOWIFIHERE"];
     // potConnection.add(wifi);
     // potConnection.add(password);
-    const potMac = "10101010100101";
+    String potMac = id;
     const potSensor = {
       "Low Humidity",
       "Low Light",
@@ -225,6 +227,8 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                                   setState(() {
                                     selectedTile = index;
                                     connectedDevice = device;
+                                    macAddress = connectedDevice.id.toString();
+                                    deviceName = connectedDevice.name;
                                     print(connectedDevice);
                                   });
                                   isConnected = await connect(device);
@@ -400,7 +404,8 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                           _pot_plantnameController.text,
                           _wifiController.text,
                           _passwordController.text,
-                          connectedDevice.id,
+                          macAddress,
+                          deviceName
                           // connectedDevice.name, connectedDevice.id.toString(),
                         );
                       },
