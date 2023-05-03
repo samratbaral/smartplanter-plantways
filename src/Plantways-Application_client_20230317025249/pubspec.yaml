@@ -39,6 +39,7 @@ flutter:
     - assets/RiveAssets/
     - assets/sensors/
     - assets/logo/
+    - assets/avaters/
     - .env
 
   fonts:

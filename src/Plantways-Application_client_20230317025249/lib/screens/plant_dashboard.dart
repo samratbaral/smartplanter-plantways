@@ -10,6 +10,7 @@ import '../../model/menu.dart';
 // import 'package:flutter_todo/components/animated_btn.dart';
 import 'package:flutter_todo/components/menu_btn.dart';
 import 'package:flutter_todo/components/side_bar.dart';
+import 'package:flutter_todo/model/plant.dart';
 // import 'package:flutter_todo/components/sign_in_dialog.dart';
 
 import 'package:flutter_todo/realm/schemas.dart';
@@ -26,12 +27,14 @@ class PlantDashboard extends StatefulWidget {
 
 class _PlantDashboardState extends State<PlantDashboard>
     with SingleTickerProviderStateMixin {
+
   bool isSideBarOpen = false;
   late RiveAnimationController _btnAnimationController3;
   // bool isShowAddPlant = false
   Menu selectedBottonNav = bottomNavItems.first;
   Menu selectedSideMenu = sidebarMenus.first;
-
+  
+  //late RealmResults<PlantUserData> results;
   late SMIBool isMenuOpenInput;
 
   void updateSelectedBtmNav(Menu menu) {
@@ -156,8 +159,9 @@ class _PlantDashboardState extends State<PlantDashboard>
                   if (data == null) return waitingIndicator();
 
                   final results = data.results;
+                 
                   return ListView.builder(
-                    shrinkWrap: true,
+                    shrinkWrap: false,
                     itemCount: results.realm.isClosed ? 0 : results.length,
                     itemBuilder: (context, index) => results[index].isValid
                         ? TodoItem(results[index])

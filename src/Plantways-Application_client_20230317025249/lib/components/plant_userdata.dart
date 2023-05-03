@@ -5,8 +5,9 @@ import 'package:flutter_todo/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/realm/schemas.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
+import 'package:flutter_todo/components/plant_card.dart';
 
-enum MenuOption { edit, delete, update}
+enum MenuOption { edit, delete, update }
 
 class TodoItem extends StatelessWidget {
   final PlantUserData plant;
@@ -18,57 +19,18 @@ class TodoItem extends StatelessWidget {
     final realmServices = Provider.of<RealmServices>(context);
     bool isMine = (plant.ownerId == realmServices.currentUser?.id);
     return plant.isValid
-        ? ListTile(
-      leading: Checkbox(
-        value: plant.isComplete,
-        onChanged: (bool? value) async {
-          if (isMine) {
-            await realmServices.updateItem(plant,
-                isComplete: value ?? false);
-          } else {
-            errorMessageSnackBar(context, "Change not allowed!",
-                "You are not allowed to change the status of \n tasks that don't belomg to you.")
-                .show(context);
-          }
-        },
-      ),
-      title: Text(plant.plantName),
-      subtitle: Text(
-        isMine ? '(smart-planter) ' : '(dummy)',
-        style: boldTextStyle(),
-      ),
-
-      trailing: SizedBox(
-        width: 25,
-        child: PopupMenuButton<MenuOption>(
-          onSelected: (menuItem) =>
-              handleMenuClick(context, menuItem, plant, realmServices),
-          itemBuilder: (context) => [
-            const PopupMenuItem<MenuOption>(
-              value: MenuOption.edit,
-              child: ListTile(
-                  leading: Icon(Icons.edit), title: Text("Edit Planter")),
-            ),
-            const PopupMenuItem<MenuOption>(
-              value: MenuOption.update,
-              child: ListTile(
-                  leading: Icon(Icons.update), title: Text("Update Data")),
-            ),
-            const PopupMenuItem<MenuOption>(
-              value: MenuOption.delete,
-              child: ListTile(
-                  leading: Icon(Icons.delete), title: Text("Delete Planter")),
-            ),
-          ],
-        ),
-      ),
-      shape: const Border(bottom: BorderSide()),
-    )
+        ? PlantCard(
+            plantName: plant.plantName,
+            potConnection: plant.potConnection,
+            potMac: plant.potMac,
+            potName: plant.potName,
+            potSensorData: plant.potSensorData,
+          )
         : Container();
   }
 
-  void handleMenuClick(BuildContext context, MenuOption menuItem, PlantUserData plant ,
-      RealmServices realmServices) {
+  void handleMenuClick(BuildContext context, MenuOption menuItem,
+      PlantUserData plant, RealmServices realmServices) {
     bool isMine = (plant.ownerId == realmServices.currentUser?.id);
     switch (menuItem) {
       case MenuOption.edit:
@@ -80,7 +42,7 @@ class TodoItem extends StatelessWidget {
           );
         } else {
           errorMessageSnackBar(context, "Edit not allowed!",
-              "You are not allowed to edit tasks \nthat don't belong to you.")
+                  "You are not allowed to edit tasks \nthat don't belong to you.")
               .show(context);
         }
         break;
@@ -89,7 +51,7 @@ class TodoItem extends StatelessWidget {
           realmServices.deleteItem(plant);
         } else {
           errorMessageSnackBar(context, "Delete not allowed!",
-              "You are not allowed to delete this plant \n that don't belong to you.")
+                  "You are not allowed to delete this plant \n that don't belong to you.")
               .show(context);
         }
         break;
@@ -102,7 +64,7 @@ class TodoItem extends StatelessWidget {
           );
         } else {
           errorMessageSnackBar(context, "Update not allowed!",
-              "You are not allowed to edit tasks \nthat don't belong to you.")
+                  "You are not allowed to edit tasks \nthat don't belong to you.")
               .show(context);
         }
         break;

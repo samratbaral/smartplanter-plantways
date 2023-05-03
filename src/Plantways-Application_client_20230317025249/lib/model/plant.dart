@@ -1,17 +1,22 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/components/todo_item.dart';
 import 'package:flutter_todo/components/widgets.dart';
+import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/realm/schemas.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:realm/realm.dart';
+import 'package:flutter_todo/screens/plant_dashboard.dart';
+import '../realm/realm_services.dart';
 
 class Plant {
   // late Realm realm;
-  final String name, description, iconSrc;
+ // final String name, description, iconSrc;
   final Color color;
-  final int temperature, humidity;
-  final String light, water, level, soil;
+  //final int temperature, humidity;
+ // final String light, water, level, soil;
   final String plantName, potName, potMac;
   final List<String> potConnection;
   final Set<String> potSensorData;
@@ -22,23 +27,21 @@ class Plant {
     required this.potMac,
     required this.potConnection,
     required this.potSensorData,
-    required this.name,
-    required this.description,
-    required this.temperature,
-    required this.humidity,
-    required this.light,
-    required this.water,
-    required this.level,
-    required this.soil,
-    this.iconSrc = "assets/icons/code.svg", // change into plant icon
+    // required this.name,
+    // required this.description,
+    // required this.temperature,
+    // required this.humidity,
+    // required this.light,
+    // required this.water,
+    // required this.level,
+    // required this.soil,
+    //this.iconSrc = "assets/icons/code.svg", // change into plant icon
     this.color = const Color.fromRGBO(
         41, 171, 135, 1.0), //Jungle Green #29ab87 | rgb(41,171,135)
   });
 }
 
 final List<Plant> plants = [];
-
-
 
 
 //

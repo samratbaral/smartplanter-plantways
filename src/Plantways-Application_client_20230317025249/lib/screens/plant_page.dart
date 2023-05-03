@@ -10,19 +10,19 @@ class PlantPage extends StatelessWidget {
     required this.potMac,
     required this.potConnection,
     required this.potSensorData,
-    required this.name,
-    required this.temperature,
-    required this.humidity,
-    required this.light,
-    required this.water,
-    required this.soil,
-    this.iconSrc = "assets/icons/code.svg",
+    // required this.name,
+    // required this.temperature,
+    // required this.humidity,
+    // required this.light,
+    // required this.water,
+    // required this.soil,
+   // this.iconSrc = "assets/icons/code.svg",
   });
   final String plantName, potName, potMac;
   final List<String> potConnection;
   final Set<String> potSensorData;
-  final String name, iconSrc;
-  final String soil, temperature, humidity, light, water;
+ // final String name, iconSrc;
+ // final String soil, temperature, humidity, light, water;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,23 +39,23 @@ class PlantPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    name,
+                    potName, // changed from name
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                SvgPicture.asset(iconSrc),
+                //SvgPicture.asset(iconSrc),
               ],
             ),
             const SizedBox(height: 30),
-            StatCard(
-                soil: soil,
-                temperature: temperature,
-                humidity: humidity,
-                light: light,
-                water: water),
+            // StatCard(
+            //     soil: soil,
+            //     temperature: temperature,
+            //     humidity: humidity,
+            //     light: light,
+            //     water: water),
 
             // Text(
             //   'Temperature: $temperature',
