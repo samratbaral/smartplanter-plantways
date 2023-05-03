@@ -1,23 +1,23 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_blue_plus (0.0.1):
+  - flutter_blue (0.0.1):
     - Flutter
-    - flutter_blue_plus/Protos (= 0.0.1)
-  - flutter_blue_plus/Protos (0.0.1):
+    - flutter_blue/Protos (= 0.0.1)
+  - flutter_blue/Protos (0.0.1):
     - Flutter
-    - Protobuf (~> 3.11)
+    - Protobuf (~> 3.11.4)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - permission_handler_apple (9.0.4):
     - Flutter
-  - Protobuf (3.22.1)
+  - Protobuf (3.11.4)
   - realm (1.0.0):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_blue_plus (from `.symlinks/plugins/flutter_blue_plus/ios`)
+  - flutter_blue (from `.symlinks/plugins/flutter_blue/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - realm (from `.symlinks/plugins/realm/ios`)
@@ -29,8 +29,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_blue_plus:
-    :path: ".symlinks/plugins/flutter_blue_plus/ios"
+  flutter_blue:
+    :path: ".symlinks/plugins/flutter_blue/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/ios"
   permission_handler_apple:
@@ -40,10 +40,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_blue_plus: 6787777145d615de01828f3a9fa423c3c702f0b3
+  flutter_blue: eeb381dc4727a0954dede73515f683865494b370
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  Protobuf: d7f7c8329edf5eb8af65547a8ba3e9c1cee927d5
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   realm: db34b24a3225390aaa9704c56298950b2fd6b811
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3

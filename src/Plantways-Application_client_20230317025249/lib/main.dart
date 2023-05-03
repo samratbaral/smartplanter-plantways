@@ -84,7 +84,7 @@ class App extends StatelessWidget {
           '/welcome': (context) => const WelcomePage(),
           '/plantpage': (context) => const PlantPage(),
           '/accountpage': (context) => const AccountPage(),
-         // '/bluetoothpage': (context) => const FlutterBlueApp(),
+          // '/bluetoothpage': (context) => const FlutterBlueApp(),
         },
       ),
     );

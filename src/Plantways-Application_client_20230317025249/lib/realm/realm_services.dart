@@ -82,13 +82,13 @@ class RealmServices with ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteItem(PlantUserData plantUser) {
-    realm.write(() => realm.delete(plantUser));
+  void deleteItem(PlantUserData plant) {
+    realm.write(() => realm.delete(plant));
     notifyListeners();
   }
 
-  Future<void> updateItem(PlantUserData item,
-      {String? summary, bool? isComplete}) async {
+  Future<void> updateItem(PlantUserData plant,
+      {String? plantName, String? potName, bool? isComplete}) async {
     realm.write(() {});
     notifyListeners();
   }

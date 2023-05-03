@@ -1,34 +1,27 @@
-// import 'dart:ui';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/components/widgets.dart';
-import 'package:flutter_todo/components/plant_userdata.dart';
+import 'package:flutter_todo/screens/welcome.dart';
 import 'package:rive/rive.dart';
-import 'package:flutter_todo/screens/widget_tree.dart';
 import 'package:flutter_todo/theme.dart';
+import 'package:flutter_todo/utils/rive_utils.dart';
+
 import '../../model/menu.dart';
-// import 'package:flutter_todo/components/animated_btn.dart';
 import 'package:flutter_todo/components/menu_btn.dart';
 import 'package:flutter_todo/components/side_bar.dart';
-// import 'package:flutter_todo/components/sign_in_dialog.dart';
+import 'package:flutter_todo/components/btm_nav_item.dart';
 
-import 'package:flutter_todo/realm/schemas.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_todo/realm/realm_services.dart';
-import 'package:realm/realm.dart';
-
-class PlantDashboard extends StatefulWidget {
-  const PlantDashboard({super.key});
+class EntryPoint extends StatefulWidget {
+  const EntryPoint({super.key});
 
   @override
-  State<PlantDashboard> createState() => _PlantDashboardState();
+  State<EntryPoint> createState() => _EntryPointState();
 }
 
-class _PlantDashboardState extends State<PlantDashboard>
+class _EntryPointState extends State<EntryPoint>
     with SingleTickerProviderStateMixin {
   bool isSideBarOpen = false;
-  late RiveAnimationController _btnAnimationController3;
-  // bool isShowAddPlant = false
+
   Menu selectedBottonNav = bottomNavItems.first;
   Menu selectedSideMenu = sidebarMenus.first;
 
@@ -48,14 +41,10 @@ class _PlantDashboardState extends State<PlantDashboard>
 
   @override
   void initState() {
-    _btnAnimationController3 = OneShotAnimation(
-      "active",
-      autoplay: true,
-    );
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200))
       ..addListener(
-        () {
+            () {
           setState(() {});
         },
       );
@@ -74,7 +63,6 @@ class _PlantDashboardState extends State<PlantDashboard>
 
   @override
   Widget build(BuildContext context) {
-    final realmServices = Provider.of<RealmServices>(context);
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
@@ -105,7 +93,7 @@ class _PlantDashboardState extends State<PlantDashboard>
                     Radius.circular(24),
                   ),
                   // goes to home_screen.dart
-                  child: WidgetTree(),
+                  child: WelcomePage(),
                 ),
               ),
             ),
@@ -126,7 +114,7 @@ class _PlantDashboardState extends State<PlantDashboard>
                 }
 
                 setState(
-                  () {
+                      () {
                     isSideBarOpen = !isSideBarOpen;
                   },
                 );
@@ -138,36 +126,56 @@ class _PlantDashboardState extends State<PlantDashboard>
                 artboard.addController(controller!);
 
                 isMenuOpenInput =
-                    controller.findInput<bool>("isOpen") as SMIBool;
+                controller.findInput<bool>("isOpen") as SMIBool;
                 isMenuOpenInput.value = true;
               },
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 220, 16, 220),
-              child: StreamBuilder<RealmResultsChanges<PlantUserData>>(
-                stream: realmServices.realm
-                    .query<PlantUserData>("TRUEPREDICATE SORT(_id ASC)")
-                    .changes,
-                builder: (context, snapshot) {
-                  final data = snapshot.data;
-
-                  if (data == null) return waitingIndicator();
-
-                  final results = data.results;
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: results.realm.isClosed ? 0 : results.length,
-                    itemBuilder: (context, index) => results[index].isValid
-                        ? TodoItem(results[index])
-                        : Container(),
-                  );
-                },
-              ),
+        ],
+      ),
+      bottomNavigationBar: Transform.translate(
+        offset: Offset(0, 100 * animation.value),
+        child: SafeArea(
+          child: Container(
+            padding:
+            const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 12),
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            decoration: BoxDecoration(
+              color: backgroundColor2.withOpacity(0.8),
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              boxShadow: [
+                BoxShadow(
+                  color: backgroundColor2.withOpacity(0.3),
+                  offset: const Offset(0, 20),
+                  blurRadius: 20,
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ...List.generate(
+                  bottomNavItems.length,
+                      (index) {
+                    Menu navBar = bottomNavItems[index];
+                    return BtmNavItem(
+                      navBar: navBar,
+                      press: () {
+                        RiveUtils.chnageSMIBoolState(navBar.rive.status!);
+                        updateSelectedBtmNav(navBar);
+                      },
+                      riveOnInit: (artboard) {
+                        navBar.rive.status = RiveUtils.getRiveInput(artboard,
+                            stateMachineName: navBar.rive.stateMachineName);
+                      },
+                      selectedNav: selectedBottonNav,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

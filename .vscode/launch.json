@@ -6,10 +6,6 @@
     "configurations": [
 
         {
-<<<<<<< HEAD
-            "name": "plantsways_app (Flutter APP)",
-            "cwd": "src/Plantways-Application_client_20230317025249",
-=======
             "name": "plantsways_app",
             "cwd": "src/Plantways-Application_client_20230317025249",
             "request": "launch",
@@ -18,18 +14,10 @@
         {
             "name": "plantsways_iot (profile mode)",
             "cwd": "src/plantways_iot",
->>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
-<<<<<<< HEAD
-        {
-            "name": "plantsways_app (release mode)",
-            "cwd": "src/plantways_iot",
-            "request": "launch",
-        }
-=======
         // {
         //     "name": "plantsways_app (release mode)",
         //     "cwd": "src/Plantways-Application_client_20230317025249",
@@ -37,6 +25,5 @@
         //     "type": "dart",
         //     "flutterMode": "release"
         // }
->>>>>>> 26750efd1f1ff59228096e8e0b921e53141aeedf
     ]
 }

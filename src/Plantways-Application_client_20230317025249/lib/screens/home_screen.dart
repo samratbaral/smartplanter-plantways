@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/components/bluetooth_plus.dart';
+// import 'package:flutter_todo/components/bluetooth_plus.dart';
+// import 'package:flutter_todo/realm/schemas.dart';
 import 'dart:ui';
-import '../../model/plant.dart';
-import '../components/plant_card.dart';
+// import '../../model/plant.dart';
+// import '../components/plant_card.dart';
 import 'package:rive/rive.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/components/animated_btn.dart';
@@ -10,11 +11,11 @@ import 'package:flutter_todo/components/add_planter_dialog.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/components/app_bar.dart';
 
-import 'package:flutter_todo/components/plant_list.dart';
-import 'package:flutter_todo/components/widgets.dart';
-import 'package:realm/realm.dart';
-import '../components/bluetooth.dart';
-import 'package:flutter_todo/components/add_planter_form.dart';
+// import 'package:flutter_todo/components/plant_list.dart';
+// import 'package:flutter_todo/components/widgets.dart';
+// import 'package:realm/realm.dart';
+// import '../components/bluetooth.dart';
+// import 'package:flutter_todo/components/add_planter_form.dart';
 
 //HomePage => PlantPage
 class PlantPage extends StatefulWidget {
@@ -24,7 +25,8 @@ class PlantPage extends StatefulWidget {
   State<PlantPage> createState() => _PlantPageState();
 }
 
-class _PlantPageState extends State<PlantPage> {
+class _PlantPageState extends State<PlantPage>
+    with SingleTickerProviderStateMixin {
   late RiveAnimationController _btnAnimationController3;
   bool isShowSignInDialog = false;
 
@@ -128,45 +130,12 @@ class _PlantPageState extends State<PlantPage> {
                               child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
                                   child: Column(
-                                    //changed this from row to column
-                                    // children: const [
-                                    //   PlantList(),
-                                    // ],
+                                      //changed this from row to column
+                                      // children: const [
+                                      //   PlantList(),
+                                      // Plant List
 
-                                    // Plant List
-                                    children: plants
-                                        .map(
-                                          (plant) => Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10,
-                                                bottom: 10,
-                                                right: 10),
-                                            child: PlantCard(
-                                              plantName: plant.plantName,
-                                              potName: plant.potName,
-                                              potMac: plant.potMac,
-                                              potConnection:
-                                                  plant.potConnection,
-                                              potSensorData:
-                                                  plant.potSensorData,
-                                              name: plant.name,
-                                              description: plant.description,
-                                              iconSrc: plant.iconSrc,
-                                              color: plant.color,
-                                              temperature:
-                                                  plant.temperature.toString(),
-                                              humidity:
-                                                  plant.humidity.toString(),
-                                              light: plant.light,
-                                              water: plant.water,
-                                              soil: plant.soil,
-                                            ),
-                                          ),
-                                          // child: PlantPage(),
-                                        )
-                                        .toList(),
-                                    // Plant List
-                                  )))
+                                      )))
                         ],
                       ),
                     )
