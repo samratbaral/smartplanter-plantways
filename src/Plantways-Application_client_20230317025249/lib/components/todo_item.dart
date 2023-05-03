@@ -5,14 +5,14 @@
 // import 'package:provider/provider.dart';
 // import 'package:flutter_todo/realm/schemas.dart';
 // import 'package:flutter_todo/realm/realm_services.dart';
-//
+
 // enum MenuOption { edit, delete }
-//
+
 // class TodoItem extends StatelessWidget {
 //   final PlantUserData item;
-//
+
 //   const TodoItem(this.item, {Key? key}) : super(key: key);
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     final realmServices = Provider.of<RealmServices>(context);
@@ -61,7 +61,7 @@
 //           )
 //         : Container();
 //   }
-//
+
 //   void handleMenuClick(BuildContext context, MenuOption menuItem, PlantUserData item,
 //       RealmServices realmServices) {
 //     bool isMine = (item.username == realmServices.currentUser?.id);

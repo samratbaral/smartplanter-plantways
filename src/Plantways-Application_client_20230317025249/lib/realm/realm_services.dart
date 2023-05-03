@@ -81,6 +81,11 @@ class RealmServices with ChangeNotifier {
     realm.write<PlantUserData>(() => realm.add<PlantUserData>(newItem));
     notifyListeners();
   }
+  //added this kevin
+  RealmResults<PlantUserData> readItems(){
+    final pots = realm.all<PlantUserData>();
+    return pots;
+  }
 
   void deleteItem(PlantUserData plantUser) {
     realm.write(() => realm.delete(plantUser));

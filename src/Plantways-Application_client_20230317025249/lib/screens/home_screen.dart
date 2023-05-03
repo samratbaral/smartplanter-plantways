@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/components/bluetooth_plus.dart';
+import 'package:flutter_todo/realm/schemas.dart';
 import 'dart:ui';
 import '../../model/plant.dart';
 import '../components/plant_card.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_todo/components/animated_btn.dart';
 import 'package:flutter_todo/components/add_planter_dialog.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/components/app_bar.dart';
+import 'package:flutter_todo/components/plant_search.dart';
 
 import 'package:flutter_todo/components/plant_list.dart';
 import 'package:flutter_todo/components/widgets.dart';
@@ -27,7 +29,7 @@ class PlantPage extends StatefulWidget {
 class _PlantPageState extends State<PlantPage> {
   late RiveAnimationController _btnAnimationController3;
   bool isShowSignInDialog = false;
-
+  // List<PlantUserData> userPots = []; //added this Kevin
   @override
   void initState() {
     _btnAnimationController3 = OneShotAnimation(
@@ -36,6 +38,10 @@ class _PlantPageState extends State<PlantPage> {
     );
     super.initState();
   }
+  // Future<void> loadPots()async {
+  //   final realmServices = Provider.of<RealmServices>(context, listen: false);
+  //   final pots = realmServices.readItems();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +189,7 @@ class _PlantPageState extends State<PlantPage> {
         //     Navigator.push(
         //         context,
         //         MaterialPageRoute(
-        //             builder: (context) => const FlutterBlueApp()));
+        //             builder: (context) => const Plants()));
         //   },
         //   backgroundColor: Colors.black,
         //   child: const Icon(Icons.search),
