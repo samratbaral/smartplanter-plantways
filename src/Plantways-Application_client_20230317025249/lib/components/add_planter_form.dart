@@ -229,7 +229,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                                     connectedDevice = device;
                                     macAddress = connectedDevice.id.toString();
                                     deviceName = connectedDevice.name;
-                                    print(connectedDevice);
+                                    print("MAC ADDRESS: $macAddress");
                                   });
                                   isConnected = await connect(device);
                                   showMessage(isConnected);
@@ -404,10 +404,11 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                           _pot_plantnameController.text,
                           _wifiController.text,
                           _passwordController.text,
-                          macAddress,
+                          macAddress.toLowerCase(),
                           deviceName
                           // connectedDevice.name, connectedDevice.id.toString(),
                         );
+                        write(/*macAddress,*/ _wifiController.text, _passwordController.text);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(41, 171, 135, 30),
@@ -532,7 +533,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
     ));
   }
 
-  Future<void> write(String ssid, String password) async {
+  Future<void> write(/*String mac,*/ String ssid, String password) async {
     String data = '$ssid,$password';
     await characteristicToWrite.write(data.codeUnits);
   }
