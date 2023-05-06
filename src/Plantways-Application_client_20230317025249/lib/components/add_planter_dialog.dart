@@ -402,10 +402,6 @@ void showCustomDialog3(BuildContext context, {required ValueChanged onValue}) {
                             height: 500,
                             child: AddPlanterForm(),
                           ),
-                          SizedBox(
-                            height: 500,
-                            child: AddPlanterForm(),
-                          ),
                         ],
                       ),
                     ),

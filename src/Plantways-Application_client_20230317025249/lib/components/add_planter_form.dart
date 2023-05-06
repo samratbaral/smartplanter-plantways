@@ -52,7 +52,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
 
   // Bluetooth
   int selectedTile = -1;
-  FlutterBlue flutterBlue = FlutterBlue.instance;
+  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
   List<BluetoothDevice> devicesList = [];
   bool devicesDiscovered = false;
   late BluetoothCharacteristic characteristicToWrite;
@@ -117,7 +117,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
       isShowLoading = true;
     });
 
-    List<String> potConnection = [name,"YOUTHOUGHT", "NOWIFIHERE"];
+    List<String> potConnection = [name, "YOUTHOUGHT", "NOWIFIHERE"];
     // potConnection.add(wifi);
     // potConnection.add(password);
     String potMac = id;
@@ -206,11 +206,10 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                    '1) Start Bluetooth scan and connect to your device'),
+                const Text('Scan Smart Planter Near You'),
                 devicesDiscovered
                     ? Container(
-                        height: 300,
+                        height: 200,
                         width: 300,
                         decoration: BoxDecoration(
                             border: Border.all(width: 5, color: Colors.black)),
@@ -243,27 +242,6 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                         onPressed: startScan,
                         child: const Text('Start Scan'),
                       ),
-                //form fields
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 8, bottom: 8),
-                //   child: TextFormField(
-                //     controller: _nameBLEController,
-                //     onSaved: (connectedDevice) {
-                //       _nameBLEController.text = connectedDevice!;
-                //     },
-                //     textInputAction: TextInputAction.done,
-                //   ),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 8, bottom: 8),
-                //   child: TextFormField(
-                //     controller: _macBLEController,
-                //     onSaved: (connectedDevice) {
-                //       _macBLEController.text = connectedDevice!;
-                //     },
-                //     textInputAction: TextInputAction.done,
-                //   ),
-                // ),
                 const Text(
                   "Pot Name",
                   style: TextStyle(
@@ -399,16 +377,17 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
                     child: ElevatedButton.icon(
                       onPressed: () {
                         addInPlanter(
-                          context,
-                          _pot_nameController.text,
-                          _pot_plantnameController.text,
-                          _wifiController.text,
-                          _passwordController.text,
-                          macAddress.toLowerCase(),
-                          deviceName
-                          // connectedDevice.name, connectedDevice.id.toString(),
-                        );
-                        write(/*macAddress,*/ _wifiController.text, _passwordController.text);
+                            context,
+                            _pot_nameController.text,
+                            _pot_plantnameController.text,
+                            _wifiController.text,
+                            _passwordController.text,
+                            macAddress.toLowerCase(),
+                            deviceName
+                            // connectedDevice.name, connectedDevice.id.toString(),
+                            );
+                        write(/*macAddress,*/ _wifiController.text,
+                            _passwordController.text);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(41, 171, 135, 30),
