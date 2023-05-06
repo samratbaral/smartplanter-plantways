@@ -52,7 +52,7 @@ class _AddPlanterFormState extends State<AddPlanterForm> {
 
   // Bluetooth
   int selectedTile = -1;
-  FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+  FlutterBlue flutterBlue = FlutterBlue.instance;
   List<BluetoothDevice> devicesList = [];
   bool devicesDiscovered = false;
   late BluetoothCharacteristic characteristicToWrite;
