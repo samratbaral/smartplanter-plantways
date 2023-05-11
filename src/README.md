@@ -1,8 +1,8 @@
 ### [< Back](/README.md) to README File
 
-## Getting Started
+# Getting Started
 
-### Requirements
+## Requirements
 
 - **Chrome**. This Chrome Version 107.0.5304.110  was used to developed and tested application. Follow the directions at [this link](https://www.google.com/chrome/) to install Chrome.
 
@@ -13,39 +13,40 @@
 
 - **Visual Studio Code**. This VS Code  Version 1.73.1  was used to developed and tested application. Follow the directions at [this link](https://code.visualstudio.com/) to install VS Code .
 
-- **IntelliJ IDEA 2023.1 (Community Edition)**. This VS Code  Version 17.0.6 was used to developed and tested application. Follow the directions at [this link](https://www.jetbrains.com/idea/whatsnew/) to install IntelliJ IDEA 2023.1 (Community Edition) .
+- **IntelliJ IDEA 2023.1 (Community Edition)** This VS Code  Version 17.0.6 was used to developed and tested application. Follow the directions at [this link](https://www.jetbrains.com/idea/whatsnew/) to install IntelliJ IDEA 2023.1 (Community Edition) .
+#
+## Source Code
 
-
-### Installation
+- **IoT**: [Getting Started with IoT Setup](/src/plantsways_iot/README.md)
+- **Application**: [Getting Started with App Setup](/src/plantways_app/Plantways-Application_client_20230317025249/README.md)
+#
+## Installation
 
 1. Clone this repository and install the dependencies:
 
    ```bash
-   git clone https://github.com/samratbaral/smartplanter-mongodb
-   cd  smartplanter-mongodb
+   git clone https://github.com/samratbaral/smartplanter-plantways
+   cd  smartplanter-plantways
    ```
 
 2. **(Disclamier: Approval Needed)**
 
 
+#
 
+## Flutter Help
+- **Flutter Install Guide** : Follow Instruction [this link](https://docs.flutter.dev/get-started/install)
 
+- **Flutter Project Guide** : This project is a starting point for a Flutter application. A few resources to get you started if this is your first Flutter project:
 
-
-
-### Getting Help
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+    - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
+#
 ### Dev Tips
 
 - If you are using VS Code, you can enjoy break-point debugging within your IDE by debugging.
@@ -55,10 +56,11 @@ samples, guidance on mobile development, and a full API reference.
 - [Sign up](https://github.com/features/copilot/signup) for [Github CoPilot](https://copilot.github.com/) if you haven't already. My experience is that copilot makes it easy to jump into new languages and frameworks.
 
 - If you are stuck, please contact me at our [team](/README.md).
-
+#
 ### Dev Notes
 
 TODO : 'What to to-do'
 
 - [x] Done.
 - [ ] Not Done.
+#
