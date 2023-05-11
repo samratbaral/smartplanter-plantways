@@ -1,0 +1,310 @@
+{
+  "uuid": "42bb6f3bf4d277f433be927e718e76e3",
+  "path": "Offline/SmartPlanter",
+  "name": "SmartPlanter",
+  "content": "",
+  "created_at": "2023-03-05 21:44:40",
+  "updated_at": "2023-04-07 00:33:12",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "b947e967892c6911c7144f7b2acb2663",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "00223350bfcb4dd590937487e783681f": 1,
+        "e33cc1be9d5e4d929dda60b4eb023d72": 1,
+        "b0248eb51e084227889f2cb84eab79c4": 2,
+        "404aa9221ff94de597b8734806e7c74f": 11,
+        "2c1ea314422d4cd6a64a4edebab71a11": 3,
+        "35cb2ff6cb2b4eccb83473ec55cf275f": 1,
+        "76644f7ba04f4e00b6a8a9f9cd2dac38": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "HDR-M-2.54_1x1",
+          3,
+          "HDR-M-2.54_1X1",
+          "BTN1,BTN2,VCC4",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "PH2.0-4P",
+          1,
+          "CONN-TH_PH2.0-4P",
+          "CN1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C722763",
+            "BOM_Manufacturer": "CAX(创都)",
+            "BOM_Manufacturer Part": "PH2.0-4P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "7f9a3ac5e77046fd9281706630192859",
+            "uuid": "76644f7ba04f4e00b6a8a9f9cd2dac38"
+          }
+        ],
+        [
+          "COM",
+          1,
+          "HDR-M-2.54_1X1",
+          "COM",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "1N4007W",
+          1,
+          "SOD-123_L2.8-W1.8-LS3.7-RD",
+          "D1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C328592",
+            "BOM_Manufacturer": "BLUE ROCKET",
+            "BOM_Manufacturer Part": "1N4007W",
+            "puuid": "60a676d313ae48718a81c380b73dfe4f",
+            "uuid": "e33cc1be9d5e4d929dda60b4eb023d72"
+          }
+        ],
+        [
+          "DATA_4",
+          1,
+          "HDR-M-2.54_1X1",
+          "DATA4",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "GND",
+          1,
+          "HDR-M-2.54_1X1",
+          "GND6",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "IN",
+          1,
+          "HDR-M-2.54_1X1",
+          "IN",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "PZ200-1-08-W",
+          1,
+          "HDR-TH_8P-P2.00-H-M-W7.2-N",
+          "LCD",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2905974",
+            "BOM_Manufacturer": "HCTL(华灿天禄)",
+            "BOM_Manufacturer Part": "PZ200-1-08-W",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "de78ca5873024181b335109815e22a8c",
+            "uuid": "35cb2ff6cb2b4eccb83473ec55cf275f"
+          }
+        ],
+        [
+          "A2005WV-3P",
+          3,
+          "HDR-TH_3P-P2.00-V-M",
+          "LS,MS,THS",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C225255",
+            "BOM_Manufacturer": "CJT(长江连接器)",
+            "BOM_Manufacturer Part": "A2005WV-3P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "0a8bb826444a4d8cae3575532261adad",
+            "uuid": "2c1ea314422d4cd6a64a4edebab71a11"
+          }
+        ],
+        [
+          "NO",
+          1,
+          "HDR-M-2.54_1X1",
+          "NO",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "10k",
+          1,
+          "R0603",
+          "R1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "8.2k",
+          1,
+          "R0603",
+          "R2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "TEYLETEN ESP32S 30P",
+          1,
+          "ESP32S 30PIN DEVBOARD",
+          "U1",
+          {
+            "BOM_Manufacturer Part": "ESP32 Development Board",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "7dee1a5f32e94f35b195af8fb4d6bf55",
+            "uuid": "00223350bfcb4dd590937487e783681f"
+          }
+        ],
+        [
+          "V+",
+          1,
+          "HDR-M-2.54_1X1",
+          "V+",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "V-",
+          1,
+          "HDR-M-2.54_1X1",
+          "V-",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ],
+        [
+          "VCC",
+          1,
+          "HDR-M-2.54_1X1",
+          "VCC6",
+          {
+            "BOM_Supplier Part": "C81276",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer Part": "",
+            "puuid": "19c77e72422b43b59c26b9fa67af5de4",
+            "uuid": "404aa9221ff94de597b8734806e7c74f"
+          }
+        ]
+      ],
+      "updateTime": 1680845592,
+      "createTime": 1678074280,
+      "histories": [],
+      "created_at": "2023-03-05 21:44:40",
+      "updated_at": "2023-04-07 00:33:12"
+    },
+    {
+      "uuid": "6fdd39ff34ba32ad511550a5fd94b454",
+      "puuid": "42bb6f3bf4d277f433be927e718e76e3",
+      "title": "PCB_SmartPlanter",
+      "filename": "PCB_SmartPlanter.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "19c77e72422b43b59c26b9fa67af5de4": 25,
+        "60a676d313ae48718a81c380b73dfe4f": 1,
+        "398691f1f785460098bbe5ee6590333c": 1,
+        "1dd39c395a9f4545996f72be41f1e8ba": 1,
+        "7dee1a5f32e94f35b195af8fb4d6bf55": 1
+      },
+      "BOM": [],
+      "updateTime": 1678084932,
+      "createTime": 1678083305,
+      "histories": [],
+      "created_at": "2023-03-06 00:15:05",
+      "updated_at": "2023-03-06 00:42:12"
+    },
+    {
+      "uuid": "2353034c1445c89d701b361b07edfbd7",
+      "puuid": "42bb6f3bf4d277f433be927e718e76e3",
+      "title": "PCB_SmartPlanter_2",
+      "filename": "PCB_SmartPlanter_2.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "0a8bb826444a4d8cae3575532261adad": 3,
+        "19c77e72422b43b59c26b9fa67af5de4": 11,
+        "7f9a3ac5e77046fd9281706630192859": 1,
+        "60a676d313ae48718a81c380b73dfe4f": 1,
+        "de78ca5873024181b335109815e22a8c": 1,
+        "398691f1f785460098bbe5ee6590333c": 2,
+        "7dee1a5f32e94f35b195af8fb4d6bf55": 1
+      },
+      "BOM": [],
+      "updateTime": 1680842959,
+      "createTime": 1680842882,
+      "histories": [],
+      "created_at": "2023-04-06 23:48:02",
+      "updated_at": "2023-04-06 23:49:19"
+    }
+  ],
+  "sort": [],
+  "title": "SmartPlanter",
+  "foldername": "SmartPlanter",
+  "schfilename": "SmartPlanter.json",
+  "schfilemtime": 1680845592620
+}
