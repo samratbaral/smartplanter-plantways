@@ -1,27 +1,28 @@
 # Smart Planter: PlantWays
 
 Its an IOT(Internet of Things) project using Flutter development environment.
-Please see the [Blog Post](https://blog.uta.edu/cseseniordesign/2023/04/17/smart-planter/) of Smart-Planter.
+Please see the [Blog Post](https://blog.uta.edu/cseseniordesign/2023/05/10/smart-planter/) of Smart-Planter.
 #
 ## Getting Started
 
 Please see the [Getting Started](/src/plantsways_app/README.md) section for instructions on how to get started with this project.
-
+#
 ## Summary
 Please see the [Summary](/doc/summary/summary.md) of project.
-
-## Design
-Please see the [Documents](/doc/design/3D%20print/) of project for documentation.
-
-## Documentation
-
-Please see the [Documents](/doc/documents/overleaf.md) of project for documentation.
-
-## Source Code
-Please see source code of the [Smart Planter IoT](/src/plantsways_iot/) and [Flutter Phone Application for iOS and Android](/src/Plantways-Application_client_20230317025249/). For more information click [Readme](/src/README.md)
 #
+## Design
+Please see the [Design](/doc/design/3D%20print/) of project.
+#
+## Documentation
+Please see the [Documents](/doc/documents/overleaf.md) of project.
+#
+## Source Code
+Please see source code of the
+- **[Smart Planter IoT](/src/plantsways_iot/)** and
+- **[Flutter Phone Application for iOS and Android](/src/Plantways-Application_client_20230317025249/)**
 
-
+For more information click [Read About the Project.](/src/README.md)
+#
 
 ## Team
 
