@@ -7,7 +7,7 @@
 
         {
             "name": "plantsways_app",
-            "cwd": "src/Plantways-Application_client_20230317025249",
+            "cwd": "src/plantways_app/Plantways-Application_client_20230317025249",
             "request": "launch",
             "type": "dart"
         },
