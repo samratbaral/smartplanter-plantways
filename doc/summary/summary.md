@@ -2,11 +2,14 @@
 
 # Code Organization and File Structure
 
-Code is organized under the following major files and directories: 
+Code is organized under the following major files and directories:
 
 ```text
 
 ├── docs: Documentation.
+|     └──  design
+|            ├── design.md: Locate the design.
+|            └── 3D print: Versions of Print for Smart Planter STL Files
 |    └── documents: documentation for us.
 |           ├── overleaf.md: documentation for Overleaf
 |           └── pdfs : Recent PDF format for all Overleaf.
