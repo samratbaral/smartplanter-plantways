@@ -6,10 +6,10 @@ Its an IOT(Internet of Things) project using Flutter development environment.
 
 To access the source code for the phone application see [code](src/Plantways-Application_client_20230317025249/lib).
 ## 3D Print 
-To access 3D stl files see [design](3D print).
+To access 3D stl files see 3D print folder in main branch.
 ## Documentation
 
-Please see the documenation in main.
+Please see the documenation in main branch.
 
 ## Team
 
