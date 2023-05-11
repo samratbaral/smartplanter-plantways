@@ -1,6 +1,6 @@
-# Realm Flutter Todo
+# Realm Flutter : Smart Planter IoT
 
-A todo list application built with the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/)
+A Smart Planter IoT application built with the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/)
 and [Atlas Device Sync](https://www.mongodb.com/docs/atlas/app-services/sync/).
 
 ## Configuration
