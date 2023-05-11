@@ -4,16 +4,11 @@ Its an IOT(Internet of Things) project using Flutter development environment.
 
 ## Getting Started
 
-Please see the [Getting Started](/src/plantsways_app/README.md) section for instructions on how to get started with this project.
-
-## Summary
-
-Please see the [Summary](/doc/summary/summary.md) of project.
-
+To access the source code for the phone application see [code](src/Plantways-Application_client_20230317025249/lib).
 
 ## Documentation
 
-Please see the [Documents](/doc/documents/overleaf.md) of project for documentation.
+Please see the documenation in main.
 
 ## Team
 
